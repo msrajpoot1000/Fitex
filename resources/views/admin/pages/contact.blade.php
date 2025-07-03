@@ -63,40 +63,7 @@
 @section('scripts')
 <script src="{{ URL::asset('assets/admin/libs/eva-icons/eva.min.js') }}"></script>
 
-<!-- CKEditor Script -->
-  <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            CKEDITOR.replace('editor1');
-        });
-    </script>
-    
-    <script>
-    function addInput(type) {
-        let wrapperId = type + "-wrapper";
-        let wrapper = document.getElementById(wrapperId);
 
-        let row = document.createElement('div');
-        row.className = "row g-2 mt-2";
-        row.innerHTML = `
-            <div class="col-md-10">
-                <input type="text" name="${type == 'container' ? 'containerstuffing[]' : type + '[]'}" class="form-control" placeholder="Enter ${type}">
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-danger w-100" onclick="this.closest('.row').remove()">−</button>
-            </div>
-        `;
-        wrapper.appendChild(row);
-    }
-</script>
-
-<!-- CKEditor CDN -->
-<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
-
-<!-- Initialize CKEditor -->
-<script>
-    CKEDITOR.replace('description');
-</script>
 
 
 

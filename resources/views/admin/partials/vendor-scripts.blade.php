@@ -1,7 +1,6 @@
 <!-- JAVASCRIPT -->
 {{-- <script src="https://unpkg.com/eva-icons"></script> --}}
 
-{{-- <script src="{{ URL::asset('assets/admin/libs/eva-icons/eva.min.js') }}"></script> --}}
 
 <script src="{{ URL::asset('assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ URL::asset('assets/admin/libs/metismenujs/metismenujs.min.js') }}"></script>
@@ -53,5 +52,25 @@
         @endif
     });
 </script>
+
+
+
+{{-- // CKEditor --}}
+<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>;
+
+{{-- // Initialize CKEditor --}}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const descriptionElement = document.querySelector("#description");
+
+        if (descriptionElement) {
+            ClassicEditor.create(descriptionElement).catch((error) => {
+                console.log("Error initializing CKEditor:", error);
+            });
+        } 
+    });
+</script>
+
 
 @yield('scripts')

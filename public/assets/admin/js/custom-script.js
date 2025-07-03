@@ -1,4 +1,4 @@
-// show image when select from input 
+// show image when select from input
 document.addEventListener("DOMContentLoaded", function () {
     const input = document.getElementById("photo1");
     const preview = document.getElementById("image_preview1");
@@ -22,24 +22,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
- // for show the create section in pages by using button 
- const toggleBtn = document.getElementById("toggleButton");
- const formSection = document.getElementById("create-form-section");
+// for show the create section in pages by using button
+const toggleBtn = document.getElementById("toggleButton");
+const formSection = document.getElementById("create-form-section");
 
- toggleBtn.addEventListener("click", function() {
-     if (
-         formSection.style.display === "none" ||
-         formSection.style.display === ""
-     ) {
-         formSection.style.display = "block";
-         toggleBtn.textContent = "Close Create";
-     } else {
-         formSection.style.display = "none";
-         toggleBtn.textContent = "Create Blog";
-     }
- });
-
-
-
-
-
+if (toggleBtn && formSection) {
+    toggleBtn.addEventListener("click", function () {
+        if (
+            formSection.style.display === "none" ||
+            formSection.style.display === ""
+        ) {
+            formSection.style.display = "block";
+            toggleBtn.textContent = "Close Create";
+        } else {
+            formSection.style.display = "none";
+            toggleBtn.textContent = "Create Blog";
+        }
+    });
+}

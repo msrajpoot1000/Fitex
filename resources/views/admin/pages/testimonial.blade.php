@@ -204,21 +204,8 @@
 
 
 @section('scripts')
-    <script src="{{ URL::asset('assets/admin/libs/eva-icons/eva.min.js') }}"></script>
-
-    <!-- CKEditor 5 -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
-
-    <!-- Initialize CKEditor 5 -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            ClassicEditor
-                .create(document.querySelector('#description'))
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-    </script>
+   
+   
 
 
     <script>
