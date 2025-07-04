@@ -40,3 +40,18 @@ if (toggleBtn && formSection) {
         }
     });
 }
+
+
+// this is for password see or not see in login page 
+document.addEventListener("DOMContentLoaded", function() {
+    const passwordInput = document.getElementById("password");
+    const toggleButton = document.getElementById("password-addon");
+    const toggleIcon = document.getElementById("toggle-password-icon");
+
+    toggleButton.addEventListener("click", function() {
+        const isPassword = passwordInput.type === "password";
+        passwordInput.type = isPassword ? "text" : "password";
+        toggleIcon.classList.toggle("mdi-eye-outline", !isPassword);
+        toggleIcon.classList.toggle("mdi-eye-off-outline", isPassword);
+    });
+});

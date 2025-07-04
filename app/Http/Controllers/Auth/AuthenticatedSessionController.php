@@ -34,6 +34,7 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
+
     /**
      * Destroy an authenticated session.
      */
@@ -45,6 +46,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

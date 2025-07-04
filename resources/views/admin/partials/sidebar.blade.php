@@ -48,7 +48,7 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a href="{{ route('dashboard') }}" data-key="t-ecommerce">Information</a></li>
-                            <li><a href="{{ route('admin.pages.home-slider') }}" data-key="t-sales">Home Slider</a></li>
+                            {{-- <li><a href="{{ route('admin.pages.home-slider') }}" data-key="t-sales">Home Slider</a></li> --}}
                         </ul>
                     </li>
 

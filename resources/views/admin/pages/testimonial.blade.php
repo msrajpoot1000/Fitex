@@ -57,11 +57,12 @@
                             <!-- Client Position -->
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="client_position" class="form-label">Client Position<span
-                                        class="astrick"> * </span></label>
+                                    <label for="client_position" class="form-label">Client Position<span class="astrick"> *
+                                        </span></label>
                                     <input type="text"
                                         class="form-control @error('client_position') is-invalid @enderror"
-                                        name="client_position" id="client_position" value="{{ old('client_position') }}" required>
+                                        name="client_position" id="client_position" value="{{ old('client_position') }}"
+                                        required>
                                     @error('client_position')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -108,7 +109,7 @@
                                 <label for="description" class="form-label">Testimonial Description <span
                                         class="astrick">*</span></label>
                                 <div class="editor-wrapper">
-                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" 
+                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"
                                         placeholder="Write testimonial...">{{ old('description') }}</textarea>
                                 </div>
                                 @error('description')
@@ -176,8 +177,8 @@
                                             <a href="{{ route('admin-testimonial.edit', $testimonial->id) }}"
                                                 class="btn btn-sm btn-success px-4 m-1">Edit</a>
 
-                                            <form action="{{ route('admin-testimonial.destroy', $testimonial->id) }}" method="POST"
-                                                style="display:inline-block;">
+                                            <form action="{{ route('admin-testimonial.destroy', $testimonial->id) }}"
+                                                method="POST" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm px-4 m-1"
@@ -204,8 +205,8 @@
 
 
 @section('scripts')
-   
-   
+
+
 
 
     <script>
