@@ -18,8 +18,16 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ServeController;  
 use App\Http\Controllers\ServiceDetailsController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\MailVerificationController;
+
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ContentPagesController;
 
 // frontend
+
+Route::get('/try', function () {
+    return view('welcome');
+});
 Route::get('/', [IndexController::class, 'index'])->name('user.pages.index');
 
 Route::get('/aboutus', [AboutController::class, 'about'])->name('user.pages.aboutus');
@@ -130,4 +138,40 @@ Route::resource('admin-blog', BlogController::class)->middleware(['auth', 'verif
 // Testimonial
 Route::get('/testimonial', [TestimonialContoller::class, 'indexF'])->name('user.pages.testimonial');
 Route::resource('admin-testimonial', TestimonialContoller::class)->middleware(['auth', 'verified']);
+
+
+
+Route::get('/forgot-password-otp-index', [ForgotPasswordController::class, 'sendOtpIndex'])->name('send.otp.index');
+Route::post('/forgot-password-otp-send', [ForgotPasswordController::class, 'sendOtp'])->name('send.otp.store'); 
+Route::get('/forgot-password-otp-verify/{email}', [ForgotPasswordController::class, 'verifyOtpIndex'])->name('verify.otp.index'); 
+Route::post('/forgot-password-otp-store', [ForgotPasswordController::class, 'verifyOtpStore'])->name('verify.otp.store'); 
+
+
+
+
+
+
+
+
+// Show the form
+Route::get('/request-email', [MailVerificationController::class, 'showForm'])->name('email.request.page');
+
+// Handle form submission and send verification email
+Route::get('/request-email', [MailVerificationController::class, 'send'])->name('email.request.send');
+Route::get('/request-email-resend-otp', [MailVerificationController::class, 'send'])->name('email.request.send');
+
+// Handle the email verification (with signed URL)
+Route::get('/verify-email/{user}', [MailVerificationController::class, 'verifyMail'])
+    ->name('email.verify')
+    ->middleware('signed');
+
+
+
+
+Route::get('/privacy-policy', [ContentPagesController::class, 'privacyPolicy'])->name('user.pages.privacy-policy');
+Route::get('/cookie-policy', [ContentPagesController::class, 'cookiePolicy'])->name('user.pages.cookie-policy');
+Route::get('/terms-conditions', [ContentPagesController::class, 'termsConditions'])->name('user.pages.terms-conditions');
+Route::resource('/admin-content-pages', ContentPagesController::class)->middleware(['auth', 'verified']);
+
+
 

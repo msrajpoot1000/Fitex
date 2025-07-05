@@ -82,7 +82,22 @@
                          </div>
 
                          <div class="card">
+
                              <div class="card-body p-4">
+                                 @if (session('success'))
+                                     <div class="alert alert-success alert-dismissible fade show" id="targetDiv"
+                                         role="alert">
+                                         {{ session('success') }}
+                                         <button type="button" class="btn-close" onclick="hideDiv()"
+                                             data-bs-dismiss="alert" aria-label="Close"></button>
+                                     </div>
+                                 @endif
+                                 @if (session('error'))
+                                     <div class="alert alert-danger">
+                                         {{ session('error') }}
+                                     </div>
+                                 @endif
+
                                  <div class="text-center mt-2">
                                      <h5>Welcome Back !</h5>
                                      <p class="text-muted">Sign in to continue to webadmin.</p>
@@ -108,8 +123,8 @@
 
                                          <div class="mb-3">
                                              <div class="float-end">
-                                                 @if (Route::has('password.request'))
-                                                     <a href="{{ route('password.request') }}"
+                                                 @if (Route::has('send.otp.index'))
+                                                     <a href="{{ route('send.otp.index') }}"
                                                          class="text-muted text-decoration-underline">Forgot
                                                          password?</a>
                                                  @endif

@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -24,9 +25,22 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+         // Find user by email
+        $user = User::where('email', $request->email)->first();
+
+        // ✅ Check if already verified
+        if ($user->email_verified_at==null) {
+            // dd($request);
+            return back()->with('error', 'Please Verify Your Email');
+        }
+
         $request->authenticate();
 
         $request->session()->regenerate();
+
+       
+
+        
         
         // ✅ Flash success message
         $request->session()->flash('success', 'Successfully logged in!');

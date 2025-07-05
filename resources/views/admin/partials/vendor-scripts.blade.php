@@ -72,5 +72,17 @@
     });
 </script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const descriptionElement = document.querySelector("#description1");
+
+        if (descriptionElement) {
+            ClassicEditor.create(descriptionElement).catch((error) => {
+                console.log("Error initializing CKEditor:", error);
+            });
+        } 
+    });
+</script>
+
 
 @yield('scripts')

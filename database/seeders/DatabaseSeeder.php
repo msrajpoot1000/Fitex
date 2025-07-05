@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Http\Database\Seeders\ContentPagesContentsTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,9 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // ✅ Call your content pages seeder here
+        $this->call(ContentPagesContentsTableSeeder::class);
+
+
     }
 }

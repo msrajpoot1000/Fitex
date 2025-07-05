@@ -112,6 +112,27 @@
                         </a>
                     </li>
 
+                    <li>
+                        <a href="{{ route('admin.pages.certificates') }}">
+                            <i class="bx bx-file-find icon nav-icon"></i>
+                            <span class="menu-item" data-key="t-filemanager">Privacy Policy</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('admin.pages.certificates') }}">
+                            <i class="bx bx-file-find icon nav-icon"></i>
+                            <span class="menu-item" data-key="t-filemanager">Cookie Policy</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('admin.pages.certificates') }}">
+                            <i class="bx bx-file-find icon nav-icon"></i>
+                            <span class="menu-item" data-key="t-filemanager">Terms & Conditions</span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
             <!-- Sidebar -->

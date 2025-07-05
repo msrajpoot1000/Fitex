@@ -1,0 +1,35 @@
+/* to edit service sectoin  */
+.shadow-box {
+
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.shadow-box img {
+    border-radius: 3rem;
+    width: 50%;
+}
+
+.shadow-box img:hover {
+    background-color: #ff5500;
+}
+
+.shadow-box:hover {
+
+    box-shadow: 4px 4px 10px #ff5500;
+
+}
+
+
+@media (max-width: 1400px) {
+    .cs_service_card.cs_style_1 .cs_service_card_in {
+        /* height: 374px; */
+    }
+}
+
+.cs_service_card.cs_style_1 .cs_service_card_in {
+    height: auto;
+}

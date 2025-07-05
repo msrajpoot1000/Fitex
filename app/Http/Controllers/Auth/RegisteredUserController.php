@@ -29,6 +29,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
@@ -41,10 +42,18 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        
+
         event(new Registered($user));
+        // dd($request)
 
-        Auth::login($user);
+        return redirect()->route('email.request.send', ['email' => $request->email])->with([
+            'success' => 'Please Verify the Email Address.',
+        ]);
 
-        return redirect(route('dashboard', absolute: false));
+
+        // Auth::login($user);
+
+        // return redirect(route('dashboard', absolute: false));
     }
 }
