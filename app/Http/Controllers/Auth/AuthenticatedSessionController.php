@@ -28,6 +28,10 @@ class AuthenticatedSessionController extends Controller
          // Find user by email
         $user = User::where('email', $request->email)->first();
 
+        if (!$user) {
+            return back()->with('error', 'No user found with this email.');
+        }
+
         // ✅ Check if already verified
         if ($user->email_verified_at==null) {
             // dd($request);
