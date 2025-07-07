@@ -47,12 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggleButton = document.getElementById("password-addon");
     const toggleIcon = document.getElementById("toggle-password-icon");
 
-    toggleButton.addEventListener("click", function () {
-        const isPassword = passwordInput.type === "password";
-        passwordInput.type = isPassword ? "text" : "password";
-        toggleIcon.classList.toggle("mdi-eye-outline", !isPassword);
-        toggleIcon.classList.toggle("mdi-eye-off-outline", isPassword);
-    });
+    if (passwordInput && toggleButton && toggleIcon) {
+        toggleButton.addEventListener("click", function () {
+            const isPassword = passwordInput.type === "password";
+            passwordInput.type = isPassword ? "text" : "password";
+            toggleIcon.classList.toggle("mdi-eye-outline", !isPassword);
+            toggleIcon.classList.toggle("mdi-eye-off-outline", isPassword);
+        });
+    }
 });
 
 // public/assets/js/additional.js

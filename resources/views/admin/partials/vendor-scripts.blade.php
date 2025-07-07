@@ -2,6 +2,7 @@
 {{-- <script src="https://unpkg.com/eva-icons"></script> --}}
 
 
+<script src="{{ URL::asset('assets/admin/libs/eva-icons/eva.min.js') }}"></script>
 <script src="{{ URL::asset('assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ URL::asset('assets/admin/libs/metismenujs/metismenujs.min.js') }}"></script>
 <script src="{{ URL::asset('assets/admin/libs/simplebar/simplebar.min.js') }}"></script>

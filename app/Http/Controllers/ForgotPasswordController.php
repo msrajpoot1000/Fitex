@@ -114,10 +114,10 @@ public function verifyOtpStore(Request $request){
 
      // Step 4: Check OTP validity (10 minutes)
      $otpCreated = Carbon::parse($forgotPass->updated_at); // or use `otp_created_at` if you have that column
-     if ($otpCreated->diffInMinutes(now()) > 1) {
+     if ($otpCreated->diffInMinutes(now()) > 10) {
         return back()->with([
             'error' => 'OTP has expired. Please request a new one.',
-            'otp-expired' => 1,  // or any variable you want to send
+            'otp-expired' => 10,  // or any variable you want to send
         ]);
         
      }

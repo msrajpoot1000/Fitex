@@ -10,7 +10,7 @@
       <div class="cs_top_header">
           <div class="container">
               <div class="cs_top_header_in">
-                  <div class="cs_top_header_left">Welcome to Fitex Uniforms</div>
+                  <div class="cs_top_header_left">Welcome to {{$company->companyname}} Uniforms</div>
                   <div class="cs_top_header_left">
                       <div class="cs_header_social_links_wrap">
                           <p class="mb-0">Follow Us On: </p>
@@ -60,12 +60,15 @@
                                   </ul>
                               </li>
                               <li class="menu-item-has-children">
-                                  <a href="#">Pages</a>
+                                  <a href="#">Industries</a>
                                   <ul>
-                                      <li><a href="team.html">Team</a></li>
-                                      <li><a href="team-details.html">Team Details</a></li>
-                                      <li><a href="projects.html">Projects</a></li>
-                                      <li><a href="project-details.html">Project Details</a></li>
+                                      <li><a href="team.html">Construction</a></li>
+                                      <li><a href="team-details.html">Security</a></li>
+                                      <li><a href="projects.html">Healthcare</a></li>
+                                      <li><a href="project-details.html">Hospitality </a></li>
+                                      <li><a href="project-details.html">Retail </a></li>
+                                      <li><a href="project-details.html">Corporate/Office </a></li>
+                                      <li><a href="project-details.html">School </a></li>
                                   </ul>
                               </li>
                               <li class="menu-item-has-children">
@@ -76,13 +79,13 @@
                                       </li>
                                   </ul>
                               </li>
-                              <li><a href="{{ route('user.pages.contact') }}">Contact</a></li>
+                              {{-- <li><a href="{{ route('user.pages.contact') }}">Contact</a></li> --}}
                           </ul>
                       </div>
                   </div>
                   <div class="cs_main_header_right">
                       <a href="{{ route('user.pages.contact') }}" class="cs_btn cs_style_1">
-                          <span>Read More</span>
+                          <span>Contact Us</span>
                           <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <path

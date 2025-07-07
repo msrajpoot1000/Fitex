@@ -22,6 +22,7 @@ use App\Http\Controllers\MailVerificationController;
 
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ContentPagesController;
+use App\Http\Controllers\FaqController;
 
 // frontend
 
@@ -172,6 +173,14 @@ Route::get('/privacy-policy', [ContentPagesController::class, 'privacyPolicy'])-
 Route::get('/cookie-policy', [ContentPagesController::class, 'cookiePolicy'])->name('user.pages.cookie-policy');
 Route::get('/terms-conditions', [ContentPagesController::class, 'termsConditions'])->name('user.pages.terms-conditions');
 Route::resource('/admin-content-pages', ContentPagesController::class)->middleware(['auth', 'verified']);
+
+
+
+
+
+// Faq
+Route::get('/testimonial', [FaqController::class, 'indexF'])->name('user.pages.testimonial');
+Route::resource('admin-faq', FaqController::class)->middleware(['auth', 'verified']);
 
 
 

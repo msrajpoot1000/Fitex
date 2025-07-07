@@ -63,7 +63,7 @@
                                         class="form-control @error('client_position') is-invalid @enderror"
                                         name="client_position" id="client_position" value="{{ old('client_position') }}"
                                         required>
-                                    @error('client_position')
+                                    @error('client_position')  
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

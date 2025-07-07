@@ -6,6 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Http\Database\Seeders\ContentPagesContentsTableSeeder;
+use App\Http\Database\Seeders\FaqSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
         // ✅ Call your content pages seeder here
         $this->call(ContentPagesContentsTableSeeder::class);
+        $this->call(FaqSeeder::class);
 
 
     }
