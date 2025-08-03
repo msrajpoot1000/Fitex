@@ -2,53 +2,124 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\File;
-
+use App\Models\HomeSlider;
 use Illuminate\Http\Request;
 
-use App\Models\Homeslider;
-
-class HomesliderController extends Controller
+class HomeSliderController extends Controller
 {
-    public function homeslider()
-    {    
-         $sliders = Homeslider::all();
-         return view('admin.pages.home-slider', compact('sliders'));
+    public function indexF()
+    {
+        return view('user.pages.home_sliders');
     }
-    
+
+    public function index()
+    {
+        $items = HomeSlider::latest()->get();
+  return view('admin.pages.home-slider', compact('items'));
+
+
+
+    }
+
+    public function create() {}
+
     public function store(Request $request)
     {
         $data = $request->validate([
-            'heading1' => 'required|string|max:255',
-            'heading2' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'homesliderimage' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'banner_image' => 'image|mimes:jpg,jpeg,png|max:2048|nullable',
+        'title' => 'required|string',
+        'description' => 'nullable|string',
+        'is_active' => 'required|boolean'
+        ]);
+        
+        if ($request->hasFile('banner_image')) {
+            $folder = 'upload/home_sliders';
+            $path = public_path($folder);
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $file = $request->file('banner_image');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move($path, $filename);
+            $data['banner_image'] = $folder . '/' . $filename;
+        }
+
+        HomeSlider::create($data);
+        return redirect()->route('admin-home-slider.index')->with('success', 'HomeSlider created successfully.');
+    }
+
+    public function edit(string $id)
+    {
+        $item = HomeSlider::findOrFail($id);
+   return view("admin.pages.home-slider-edit", compact('item'));
+
+
+
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $item = HomeSlider::findOrFail($id);
+
+        $request->validate([
+            'status_banner_image' => 'nullable|in:0,1',
+        'title' => 'required|string',
+        'description' => 'nullable|string',
+        'is_active' => 'required|boolean'
         ]);
 
-        if ($request->hasFile('homesliderimage')) {
-            $file = $request->file('homesliderimage');
-            $filename = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('assets/images/homeslider'), $filename);
-            $data['homesliderimage'] = 'assets/images/homeslider/' . $filename;
+        $data = $request->only(['title', 'description', 'is_active']);
+
+                $photoFields = ['banner_image'];
+
+        foreach ($photoFields as $field) {
+            $statusField = 'status_' . $field;
+
+            if ($request->input($statusField)) {
+                if ($request->hasFile($field)) {
+                    if (!empty($item->$field) && file_exists(public_path($item->$field))) {
+                        unlink(public_path($item->$field));
+                    }
+
+                    $folder = 'upload/home_sliders';
+                    $path = public_path($folder);
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+
+                    $file = $request->file($field);
+                    $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move($path, $filename);
+
+                    $data[$field] = $folder . '/' . $filename;
+                } else {
+                    $data[$field] = $item->$field;
+                }
+            } else {
+                if (!empty($item->$field) && file_exists(public_path($item->$field))) {
+                    unlink(public_path($item->$field));
+                }
+
+                $data[$field] = null;
+            }
         }
 
-        Homeslider::create($data);
+        $item->update($data);
 
-        return back()->with('success', 'Slider created successfully!');
+        return redirect()->route('admin-home-slider.index')->with('success', 'HomeSlider updated successfully.');
     }
-    
-    
-     public function destroy($id)
-    {
-        $slider = Homeslider::findOrFail($id);
 
-        if ($slider->homesliderimage && File::exists(public_path($slider->homesliderimage))) {
-            File::delete(public_path($slider->homesliderimage));
+   public function destroy(string $id)
+{
+    $item = HomeSlider::findOrFail($id);
+
+        if (!empty($item->banner_image) && file_exists(public_path($item->banner_image))) {
+            unlink(public_path($item->banner_image));
         }
 
-        $slider->delete();
+    $item->delete();
 
-        return back()->with('success', 'Slider deleted successfully!');
-    }
+    return redirect()->route('admin-home-slider.index')->with('success', 'HomeSlider deleted successfully.');
+}
 
 }

@@ -10,7 +10,7 @@
       <div class="cs_top_header">
           <div class="container">
               <div class="cs_top_header_in">
-                  <div class="cs_top_header_left">Welcome to {{$company->companyname}} Uniforms</div>
+                  <div class="cs_top_header_left">Welcome to {{ $company->companyname }} Uniforms</div>
                   <div class="cs_top_header_left">
                       <div class="cs_header_social_links_wrap">
                           <p class="mb-0">Follow Us On: </p>
@@ -18,7 +18,7 @@
                               <a href="{{ $company->linkedin }}" class="cs_social_btn cs_center">
                                   <i class="fa-brands fa-linkedin-in"></i>
                               </a>
-                              <a href="{{ $company->linkedin }}" class="cs_social_btn cs_center">
+                              <a href="{{ $company->instagram }}" class="cs_social_btn cs_center">
                                   <i class="fa-brands fa-instagram"></i>
                               </a>
 
@@ -40,7 +40,7 @@
           <div class="container">
               <div class="cs_main_header_in">
                   <div class="cs_main_header_left">
-                      <a class="cs_site_branding" href="index.html">
+                      <a href="{{ route('user.pages.index') }}" class="cs_site_branding" href="index.html">
                           <img src="{{ asset($company->logo) }}" alt="Logo" style="width:5rem">
                       </a>
                   </div>
@@ -51,14 +51,7 @@
                           <ul class="cs_nav_list">
                               <li><a href="{{ route('user.pages.index') }}">Home</a></li>
                               <li><a href="{{ route('user.pages.aboutus') }}">About Us</a></li>
-                              <li class="menu-item-has-children">
-                                  <a href="{{ route('user.pages.services') }}">Services</a>
-                                  <ul>
-                                      <li><a href="{{ route('user.pages.services') }}">Services</a></li>
-                                      <li><a href="{{ route('user.pages.service-details') }}">Service Details</a>
-                                      </li>
-                                  </ul>
-                              </li>
+
                               <li class="menu-item-has-children">
                                   <a href="#">Industries</a>
                                   <ul>
@@ -76,10 +69,10 @@
                                   <ul>
                                       <li><a href="{{ route('user.pages.blog') }}">Blogs</a></li>
                                       {{-- <li><a href="{{ route('user.pages.blog-details', $blog->id) }}">Blog Details</a> --}}
-                                      </li>
-                                  </ul>
                               </li>
-                              {{-- <li><a href="{{ route('user.pages.contact') }}">Contact</a></li> --}}
+                          </ul>
+                          </li>
+                          {{-- <li><a href="{{ route('user.pages.contact') }}">Contact</a></li> --}}
                           </ul>
                       </div>
                   </div>

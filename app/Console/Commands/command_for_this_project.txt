@@ -1,0 +1,333 @@
+
+
+// company registration level 1
+php artisan make:cat-crud ComReg  --fields="name:string:required" --fields="is_active:boolean:required:default=1" --fields="ComRegPage:hasMany:ComRegPage"
+php artisan make:custom-blade ComReg --fields="input:text:name:required" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit ComReg --fields="input:text:name:required" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+//com pages level 2
+php artisan make:subcat-crud ComRegPage --fields="name:string:required"  --fields="banner_image:image:nullable" --fields="banner_heading:string:nullable" --fields="banner_description:text:nullable" --fields="benefits_description:text:nullable" --fields="features_description:text:nullable" --fields="overview_heading:string:required" --fields="overview_description:text:nullable" --fields="type_section_heading:string:required" --fields="business_legal_description:text:nullable" --fields="step_section_sub_heading:string:nullable" --fields="step_section_heading:string:required" --fields="step_section_description:text:nullable" --fields="why_section_heading:string:required" --fields="why_section_description:text:nullable"  --fields="is_active:boolean:required:default=1"  --fields="ref_id:belongsTo:ComReg:required"
+php artisan make:sub-cat-blade ComRegPage --fields="input:text:name:required" --fields="input:file:banner_image:nullable" --fields="input:text:banner_heading:nullable" --fields="textarea:banner_description:nullable" --fields="textarea:benefits_description:nullable" --fields="textarea:features_description:nullable" --fields="input:text:overview_heading:required" --fields="textarea:overview_description:nullable" --fields="input:text:type_section_heading:required" --fields="textarea:business_legal_description:nullable" --fields="input:text:step_section_sub_heading:nullable" --fields="input:text:step_section_heading:required" --fields="textarea:step_section_description:nullable" --fields="input:text:why_section_heading:required" --fields="textarea:why_section_description:nullable"  --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required"
+php artisan make:sub-cat-edit-blade ComRegPage --fields="input:text:name:required" --fields="input:file:banner_image:nullable" --fields="input:text:banner_heading:nullable" --fields="textarea:banner_description:nullable" --fields="textarea:benefits_description:nullable" --fields="textarea:features_description:nullable" --fields="input:text:overview_heading:required" --fields="textarea:overview_description:nullable" --fields="input:text:type_section_heading:required" --fields="textarea:business_legal_description:nullable" --fields="input:text:step_section_sub_heading:nullable" --fields="input:text:step_section_heading:required" --fields="textarea:step_section_description:nullable" --fields="input:text:why_section_heading:required" --fields="textarea:why_section_description:nullable"   --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+// level 3
+
+
+// license section
+php artisan make:subsubcat-crud ComRegLicenseSec --fields="license_image:image:nullable" --fields="license_name:string:required" --fields="license_description:text:nullable"  --fields="is_active:boolean:required:default=1"   --fields="ref_id:belongsTo:ComReg:required"  --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-blade ComRegLicenseSec --fields="input:file:license_image:nullable" --fields="input:text:license_name:required" --fields="textarea:license_description:nullable" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-edit-blade ComRegLicenseSec --fields="input:file:license_image:nullable" --fields="input:text:license_name:required" --fields="textarea:license_description:nullable" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan migrate
+
+// license section update
+php artisan make:cat-crud ComRegLicenseSec --fields="license_image:image:nullable" --fields="license_name:string:required" --fields="license_description:text:nullable"  --fields="is_active:boolean:required:default=1"   
+php artisan make:custom-blade ComRegLicenseSec --fields="input:file:license_image:nullable" --fields="input:text:license_name:required" --fields="textarea:license_description:nullable" --fields="select:is_active:default=1"  
+php artisan make:custom-blade-edit ComRegLicenseSec --fields="input:file:license_image:nullable" --fields="input:text:license_name:required" --fields="textarea:license_description:nullable" --fields="select:is_active:default=1"  
+php artisan migrate
+
+
+// business legal section
+php artisan make:subsubcat-crud ComRegBusinessLegalSec  --fields="name:string:required" --fields="description:text:nullable"  --fields="is_active:boolean:required:default=1"   --fields="ref_id:belongsTo:ComReg:required"  --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-blade ComRegBusinessLegalSec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-edit-blade ComRegBusinessLegalSec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan migrate
+
+
+// business legal section update
+php artisan make:cat-crud ComRegBusinessLegalSec  --fields="name:string:required" --fields="description:text:nullable"  --fields="is_active:boolean:required:default=1"   
+php artisan make:custom-blade ComRegBusinessLegalSec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" 
+php artisan make:custom-blade-edit ComRegBusinessLegalSec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" 
+php artisan migrate
+
+
+
+
+// required document section
+php artisan make:subsubcat-crud ComRegRequireDocSec  --fields="name:string:required"   --fields="is_active:boolean:required:default=1"   --fields="ref_id:belongsTo:ComReg:required"  --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-blade ComRegRequireDocSec  --fields="input:text:name:required" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-edit-blade ComRegRequireDocSec  --fields="input:text:name:required" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan migrate
+
+
+// required document section update
+php artisan make:cat-crud ComRegRequireDocSec  --fields="name:string:required"   --fields="is_active:boolean:required:default=1"   
+php artisan make:custom-blade ComRegRequireDocSec  --fields="input:text:name:required" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit ComRegRequireDocSec  --fields="input:text:name:required" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+
+
+//step section 
+php artisan make:subsubcat-crud ComRegStepSec  --fields="name:string:required"   --fields="is_active:boolean:required:default=1"   --fields="ref_id:belongsTo:ComReg:required"  --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-blade ComRegStepSec  --fields="input:text:name:required" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-edit-blade ComRegStepSec  --fields="input:text:name:required" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan migrate
+
+
+
+//step section update
+php artisan make:cat-crud ComRegStepSec  --fields="name:string:required"   --fields="is_active:boolean:required:default=1"     
+php artisan make:custom-blade ComRegStepSec  --fields="input:text:name:required" --fields="select:is_active:default=1"  
+php artisan make:custom-blade-edit ComRegStepSec  --fields="input:text:name:required" --fields="select:is_active:default=1"  
+php artisan migrate
+
+
+
+// business legal section
+php artisan make:subsubcat-crud ComRegWhySec  --fields="name:string:required" --fields="description:text:nullable"  --fields="is_active:boolean:required:default=1"   --fields="ref_id:belongsTo:ComReg:required"  --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-blade ComRegWhySec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-edit-blade ComRegWhySec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan migrate
+
+
+
+
+business legaal update
+php artisan make:cat-crud ComRegWhySec  --fields="name:string:required" --fields="description:text:nullable"  --fields="is_active:boolean:required:default=1"  
+php artisan make:custom-blade ComRegWhySec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" 
+php artisan make:custom-blade-edit ComRegWhySec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+
+// faq
+php artisan make:subsubcat-crud ComRegFaqSec  --fields="ques:string:required" --fields="Ans:text:nullable"  --fields="is_active:boolean:required:default=1"   --fields="ref_id:belongsTo:ComReg:required"  --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-blade ComRegFaqSec  --fields="input:text:ques:required" --fields="textarea:Ans:nullable" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan make:sub-sub-cat-edit-blade ComRegFaqSec  --fields="input:text:ques:required" --fields="textarea:Ans:nullable" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
+php artisan migrate
+
+
+// faq updated
+php artisan make:cat-crud ComRegFaqSec --fields="ques:string:required" --fields="ans:text:nullable"  --fields="is_active:boolean:required:default=1"
+php artisan make:custom-blade ComRegFaqSec  --fields="input:text:ques:required" --fields="textarea:ans:nullable" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit ComRegFaqSec --fields="input:text:ques:required" --fields="textarea:ans:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+
+//frontend home slider 
+php artisan make:cat-crud HomeSlider --fields="banner_image:image:nullable" --fields="banner_heading:text:required" --fields="banner_sub_heading:text:nullable" --fields="banner_description:text:nullable" --fields="is_active:boolean:required:default=1"
+php artisan make:custom-blade HomeSlider --fields="input:file:banner_image:nullable" --fields="textarea:banner_heading:required" --fields="textarea:banner_sub_heading:nullable" --fields="textarea:banner_description:nullable" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit HomeSlider --fields="input:file:banner_image:nullable" --fields="textarea:banner_heading:required" --fields="textarea:banner_sub_heading:nullable" --fields="textarea:banner_description:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+//our partners
+php artisan make:cat-crud OurPartners --fields="partner_image:image:nullable" --fields="name:string:required" --fields="is_active:boolean:required:default=1"
+php artisan make:custom-blade OurPartners --fields="input:file:partner_image:nullable" --fields="input:text:name:required"  --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit OurPartners --fields="input:file:partner_image:nullable" --fields="input:text:name:required" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+//  key corporate services 
+php artisan make:cat-crud KeyCorServices --fields="photo:image:nullable" --fields="name:string:required"  --fields="description:text:nullable" --fields="is_active:boolean:required:default=1"
+php artisan make:custom-blade KeyCorServices --fields="input:file:photo:nullable" --fields="input:text:name:required" --fields="textarea:description:nullable"  --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit KeyCorServices --fields="input:file:photo:nullable" --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+// blog page 
+php artisan make:cat-crud Blog --fields="blog_image:image:nullable" --fields="blog_title:string:required"  --fields="blog_description:text:nullable" --fields="is_active:boolean:required:default=1"
+php artisan make:custom-blade Blog --fields="input:file:blog_image:nullable" --fields="input:text:blog_title:required" --fields="textarea:blog_description:nullable"  --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit Blog --fields="input:file:blog_image:nullable" --fields="input:text:blog_title:required" --fields="textarea:blog_description:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+
+//  key corporate services 
+php artisan make:cat-crud InCorporationServices  --fields="name:string:required"  --fields="description:text:nullable" --fields="is_active:boolean:required:default=1"
+php artisan make:custom-blade InCorporationServices  --fields="input:text:name:required" --fields="textarea:description:nullable"  --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit InCorporationServices  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// financial services 
+
+
+level 1 
+
+// financial services level 1
+php artisan make:cat-crud FinService  --fields="name:string:required" --fields="is_active:boolean:required:default=1" --fields="FinServicePage:hasMany:FinServicePage"
+php artisan make:custom-blade FinService --fields="input:text:name:required" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit FinService --fields="input:text:name:required" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+level 2 
+
+//com pages level 2
+php artisan make:subcat-crud FinServicePage --fields="name:string:required"  --fields="banner_image:image:nullable" --fields="banner_heading:string:nullable" --fields="banner_description:text:nullable" --fields="page_sec_heading:string:nullable" --fields="page_sec_description:text:nullable" --fields="extra_section:text:nullable" --fields="benifits_sec_heading:string:nullable"   --fields="benefits_description:text:nullable"  --fields="why_section_heading:string:nullable" --fields="why_section_description:text:nullable"  --fields="is_active:boolean:required:default=1"  --fields="ref_id:belongsTo:FinService:required"
+php artisan make:sub-cat-blade FinServicePage --fields="input:text:name:required" --fields="input:file:banner_image:nullable" --fields="input:text:banner_heading:nullable" --fields="textarea:banner_description:nullable" --fields="input:text:page_sec_heading:nullable" --fields="textarea:page_sec_description:nullable" --fields="textarea:extra_section:nullable" --fields="input:text:benifits_sec_heading:nullable" --fields="textarea:benefits_description:nullable" --fields="input:text:why_section_heading:nullable" --fields="textarea:why_section_description:nullable"  --fields="select:is_active:default=1" --fields="ref_id:belongsTo:FinService:required"
+php artisan make:sub-cat-edit-blade FinServicePage --fields="input:text:name:required" --fields="input:file:banner_image:nullable" --fields="input:text:banner_heading:nullable" --fields="textarea:banner_description:nullable" --fields="input:text:page_sec_heading:nullable" --fields="textarea:page_sec_description:nullable" --fields="textarea:extra_section:nullable" --fields="input:text:benifits_sec_heading:nullable" --fields="textarea:benefits_description:nullable" --fields="input:text:why_section_heading:nullable" --fields="textarea:why_section_description:nullable"   --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+level 3 
+
+benefits secton 
+php artisan make:cat-crud FinServiceBenefitSec --fields="name:string:required" --fields="description:text:nullable"  --fields="is_active:boolean:required:default=1"
+php artisan make:custom-blade FinServiceBenefitSec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit FinServiceBenefitSec --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+
+// why section  
+
+business legaal update
+php artisan make:cat-crud FinServiceWhySec  --fields="name:string:required" --fields="description:text:nullable"  --fields="is_active:boolean:required:default=1"  
+php artisan make:custom-blade FinServiceWhySec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" 
+php artisan make:custom-blade-edit FinServiceWhySec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+// faq section 
+php artisan make:cat-crud FinServiceFaqSec --fields="ques:string:required" --fields="ans:text:nullable"  --fields="is_active:boolean:required:default=1"
+php artisan make:custom-blade FinServiceFaqSec  --fields="input:text:ques:required" --fields="textarea:ans:nullable" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit FinServiceFaqSec --fields="input:text:ques:required" --fields="textarea:ans:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+
+
+
+
+
+
+
+
+
+
+// services 
+
+
+// services level 1
+php artisan make:cat-crud Service  --fields="name:string:required" --fields="is_active:boolean:required:default=1" --fields="ServicePage:hasMany:ServicePage"
+php artisan make:custom-blade Service --fields="input:text:name:required" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit Service --fields="input:text:name:required" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+//com pages level 2
+php artisan make:subcat-crud ServicePage --fields="name:string:required" --fields="description:text:nullable"   --fields="banner_image:image:nullable" --fields="banner_heading:string:nullable" --fields="banner_description:text:nullable" --fields="extra_section:text:nullable"  --fields="license_section_heading:string:nullable" --fields="business_legal_heading:string:nullable" --fields="business_legal_description:text:nullable"  --fields="why_section_heading:string:nullable" --fields="why_section_description:text:nullable"  --fields="benefit_heading:string:nullable" --fields="benefits_description:text:nullable"  --fields="is_active:boolean:required:default=1"  --fields="ref_id:belongsTo:Service:required"
+php artisan make:sub-cat-blade ServicePage --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="input:file:banner_image:nullable" --fields="input:text:banner_heading:nullable" --fields="textarea:banner_description:nullable"  --fields="textarea:extra_section:nullable"  --fields="input:text:license_section_heading:nullable" --fields="input:text:business_legal_heading:nullable" --fields="textarea:business_legal_description:nullable" --fields="input:text:why_section_heading:nullable" --fields="textarea:why_section_description:nullable" --fields="input:text:benefit_heading:nullable" --fields="textarea:benefits_description:nullable" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:Service:required"
+php artisan make:sub-cat-edit-blade ServicePage --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="input:file:banner_image:nullable" --fields="input:text:banner_heading:nullable" --fields="textarea:banner_description:nullable" --fields="textarea:extra_section:nullable"  --fields="input:text:license_section_heading:nullable" --fields="input:text:business_legal_heading:nullable" --fields="textarea:business_legal_description:nullable" --fields="input:text:why_section_heading:nullable" --fields="textarea:why_section_description:nullable" --fields="input:text:benefit_heading:nullable" --fields="textarea:benefits_description:nullable"   --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+why section update
+php artisan make:cat-crud ServiceWhySec  --fields="name:string:required" --fields="description:text:nullable"  --fields="is_active:boolean:required:default=1"  
+php artisan make:custom-blade ServiceWhySec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" 
+php artisan make:custom-blade-edit ServiceWhySec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+
+// required doc 
+php artisan make:cat-crud ServiceRequireDocSec  --fields="name:string:required"   --fields="is_active:boolean:required:default=1"   
+php artisan make:custom-blade ServiceRequireDocSec  --fields="input:text:name:required" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit ServiceRequireDocSec  --fields="input:text:name:required" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+benefits secton 
+php artisan make:cat-crud ServiceBenefitSec --fields="name:string:required" --fields="description:text:nullable"  --fields="is_active:boolean:required:default=1"
+php artisan make:custom-blade ServiceBenefitSec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit ServiceBenefitSec --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+php artisan make:cat-crud ServiceBusinessLegalSec  --fields="name:string:required" --fields="description:text:nullable"  --fields="is_active:boolean:required:default=1"   
+php artisan make:custom-blade ServiceBusinessLegalSec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" 
+php artisan make:custom-blade-edit ServiceBusinessLegalSec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" 
+php artisan migrate
+
+
+
+// faq section 
+php artisan make:cat-crud ServiceFaqSec --fields="ques:string:required" --fields="ans:text:nullable"  --fields="is_active:boolean:required:default=1"
+php artisan make:custom-blade ServiceFaqSec  --fields="input:text:ques:required" --fields="textarea:ans:nullable" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit ServiceFaqSec --fields="input:text:ques:required" --fields="textarea:ans:nullable" --fields="select:is_active:default=1"
+php artisan migrate 
+
+
+license section 
+php artisan make:cat-crud ServiceLicenseSec --fields="license_image:image:nullable" --fields="license_name:string:required" --fields="license_description:text:nullable"  --fields="is_active:boolean:required:default=1"   
+php artisan make:custom-blade ServiceLicenseSec --fields="input:file:license_image:nullable" --fields="input:text:license_name:required" --fields="textarea:license_description:nullable" --fields="select:is_active:default=1"  
+php artisan make:custom-blade-edit ServiceLicenseSec --fields="input:file:license_image:nullable" --fields="input:text:license_name:required" --fields="textarea:license_description:nullable" --fields="select:is_active:default=1"  
+php artisan migrate
+
+
+// step section
+php artisan make:cat-crud ServiceStepSec  --fields="name:string:required" --fields="step_description:text:nullable"   --fields="is_active:boolean:required:default=1"     
+php artisan make:custom-blade ServiceStepSec  --fields="input:text:name:required" --fields="textarea:step_description:nullable" --fields="select:is_active:default=1"  
+php artisan make:custom-blade-edit ServiceStepSec  --fields="input:text:name:required" --fields="textarea:step_description:nullable" --fields="select:is_active:default=1"  
+php artisan migrate
+
+
+
+
+// career page 
+level 1
+php artisan make:cat-crud Career  --fields="job_type:string:required" --fields="is_active:boolean:required:default=1" --fields="CareerJob:hasMany:CareerJob"
+php artisan make:custom-blade Career --fields="input:text:job_type:required" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit Career --fields="input:text:job_type:required" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+// level 2
+php artisan make:subcat-crud CareerJob --fields="job_name:string:required"   --fields="job_description:text:nullable" --fields="is_active:boolean:required:default=1"  --fields="ref_id:belongsTo:Career:required"
+php artisan make:sub-cat-blade CareerJob --fields="input:text:job_name:required"  --fields="textarea:job_description:nullable" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:Career:required"
+php artisan make:sub-cat-edit-blade CareerJob --fields="input:text:job_name:required"  --fields="textarea:job_description:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+
+
+
+// home slider
+php artisan make:cat-crud HomeSlider --fields="banner_image:image:nullable"  --fields="title:string:required" --fields="description:text:nullable" --fields="is_active:boolean:required:default=1"
+php artisan make:custom-blade HomeSlider --fields="input:file:banner_image:nullable" --fields="input:text:title:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit HomeSlider --fields="input:file:banner_image:nullable" --fields="input:text:title:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+php artisan migrate
+

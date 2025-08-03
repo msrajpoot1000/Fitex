@@ -11,6 +11,7 @@ class Companyinfo extends Model
     protected $fillable = [
         'companyname',
         'logo',
+        'favicon',
         'email',
         'phone',
         'phone2',

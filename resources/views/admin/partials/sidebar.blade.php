@@ -1,10 +1,8 @@
 @php
-    $companyinfos = DB::table('companyinfos')->first();
     $company = \DB::table('companyinfos')->first();
-    $categories = DB::table('productcategorys')->get();
 @endphp
 
-@if ($companyinfos)
+@if ($company)
     <!-- ========== Left Sidebar Start ========== -->
     <div class="vertical-menu">
 
@@ -12,19 +10,22 @@
         <div class="navbar-brand-box">
             <a href="index.html" class="logo logo-dark">
                 <span class="logo-sm">
-                    <img src="{{ asset($companyinfos->logo) }}" alt="" height="26">
+                    <img src="{{ asset($company->logo) }}" alt="" height="26">
                 </span>
                 <span class="logo-lg">
-                    <img src="{{ asset($companyinfos->logo) }}" alt="" height="80" width="180">
+                    <img src="{{ asset($company->logo ?? 'default/image/company_log/company_logo.png') }}" alt=""
+                        height="80" width="180">
                 </span>
             </a>
 
             <a href="index.html" class="logo logo-light">
                 <span class="logo-lg">
-                    <img src="{{ asset($companyinfos->logo) }}" alt="" height="30">
+                    <img src="{{ asset($company->logo ?? 'default/image/company_log/company_logo.png') }}"
+                        alt="" height="30">
                 </span>
                 <span class="logo-sm">
-                    <img src="{{ asset($companyinfos->logo) }}" alt="" height="26">
+                    <img src="{{ asset($company->logo ?? 'default/image/company_log/company_logo.png') }}"
+                        alt="" height="26">
                 </span>
             </a>
         </div>
@@ -48,30 +49,19 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a href="{{ route('dashboard') }}" data-key="t-ecommerce">Information</a></li>
-                            {{-- <li><a href="{{ route('admin.pages.home-slider') }}" data-key="t-sales">Home Slider</a></li> --}}
+                            <li><a href="{{ route('admin-home-slider.index') }}" data-key="t-sales">Home Slider</a></li>
                         </ul>
                     </li>
 
                     <li class="menu-title" data-key="t-applications">Pages</li>
 
-                    <li>
-                        <a href="{{ route('admin.pages.all-banner') }}">
-                            <i class="bx bx-calendar-event icon nav-icon"></i>
-                            <span class="menu-item" data-key="t-calendar">All Banner</span>
-                        </a>
-                    </li>
+
+
+
 
                     <li>
-                        <a href="{{ route('admin.pages.serve') }}">
-                            <i class="bx bx-calendar-event icon nav-icon"></i>
-                            <span class="menu-item" data-key="t-calendar">Industry Serve</span>
-                        </a>
-                    </li>
-
-                    <li>
-
                         <a href="{{ route('admin-testimonial.index') }}">
-                            <i class="bx bx-calendar-event icon nav-icon"></i>
+                            <i class="bx bx-comment icon nav-icon"></i>
                             <span class="menu-item" data-key="t-calendar">Testimonials</span>
                         </a>
                     </li>
@@ -79,67 +69,50 @@
 
                     <li>
                         <a href="{{ route('admin-blog.index') }}">
-                            <i class="bx bx-calendar-event icon nav-icon"></i>
+                            <i class="bx bx-news icon nav-icon"></i>
                             <span class="menu-item" data-key="t-calendar">Blogs</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="{{ route('admin-contact.index') }}">
-                            <i class="bx bx-check-square icon nav-icon"></i>
+                            <i class="bx bx-envelope icon nav-icon"></i>
                             <span class="menu-item" data-key="t-todo">Contact Us</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="{{ route('admin.pages.product-category') }}">
-                            <i class="bx bx-file-find icon nav-icon"></i>
-                            <span class="menu-item" data-key="t-filemanager">Product Type</span>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="bx bx-file icon nav-icon"></i>
+                            <span class="menu-item" data-key="t-email">Content Pages</span>
                         </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="email-inbox.html" data-key="t-inbox">Pages</a></li>
+
+                        </ul>
                     </li>
 
-                    <li>
-                        <a href="{{ route('admin.pages.add-product') }}">
-                            <i class="bx bx-file-find icon nav-icon"></i>
-                            <span class="menu-item" data-key="t-filemanager">Products</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{ route('admin.pages.certificates') }}">
-                            <i class="bx bx-file-find icon nav-icon"></i>
-                            <span class="menu-item" data-key="t-filemanager">Certificates</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{ route('admin.pages.certificates') }}">
-                            <i class="bx bx-file-find icon nav-icon"></i>
-                            <span class="menu-item" data-key="t-filemanager">Privacy Policy</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{ route('admin.pages.certificates') }}">
-                            <i class="bx bx-file-find icon nav-icon"></i>
-                            <span class="menu-item" data-key="t-filemanager">Cookie Policy</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{ route('admin.pages.certificates') }}">
-                            <i class="bx bx-file-find icon nav-icon"></i>
-                            <span class="menu-item" data-key="t-filemanager">Terms & Conditions</span>
-                        </a>
-                    </li>
 
                     <li>
                         <a href="{{ route('admin-faq.index') }}">
-                            <i class="bx bx-file-find icon nav-icon"></i>
+                            <i class="bx bx-help-circle icon nav-icon"></i>
                             <span class="menu-item" data-key="t-filemanager">FAQ</span>
                         </a>
                     </li>
 
+
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i class="bx bx-file icon nav-icon"></i>
+                            <span class="menu-item" data-key="t-email">Industries</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="{{ route('admin-industries.index') }}" data-key="t-inbox">Industry</a></li>
+                            <li><a href="{{ route('admin-sub-industries.index') }}" data-key="t-inbox">Sub
+                                    Industries</a></li>
+
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- Sidebar -->
@@ -166,7 +139,8 @@
                             <img src="assets/images/logo-light-sm.png" alt="" height="26">
                         </span>
                         <span class="logo-lg">
-                            <img src="assets/images/logo-light.png" alt="" height="30">
+                            <img src="{{ asset($company->logo ?? 'default/image/company_log/company_logo.png') }}"
+                                alt="" height="30">
                         </span>
                     </a>
                 </div>

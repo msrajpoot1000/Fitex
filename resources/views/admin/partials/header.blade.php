@@ -56,10 +56,10 @@
 
                   <a href="index.html" class="logo logo-light">
                       <span class="logo-lg">
-                          {{-- <img src="assets/images/logo-light.png" alt="" height="30"> --}}
+                          <img src="{{ asset($company->logo ?? 'default/image/company_log/company_logo.png') }}" alt="" height="30">
                       </span>
                       <span class="logo-sm">
-                          {{-- <img src="assets/images/logo-light-sm.png" alt="" height="26"> --}}
+                          <img src="{{ asset($company->logo ?? 'default/image/company_log/company_logo.png') }}" alt="" height="26">
                       </span>
                   </a>
               </div>
@@ -133,19 +133,19 @@
               <div class="navbar-brand-box">
                   <a href="index.html" class="logo logo-dark">
                       <span class="logo-sm">
-                          <img src="assets/images/logo-dark-sm.png" alt="" height="26">
+                          <img src="{{ asset($company->logo ?? 'default/image/company_log/company_logo.png') }}" alt="" height="26">
                       </span>
                       <span class="logo-lg">
-                          <img src="assets/images/logo-dark.png" alt="" height="28">
+                          <img src="{{ asset($company->logo ?? 'default/image/company_log/company_logo.png') }}" alt="" height="28">
                       </span>
                   </a>
 
                   <a href="index.html" class="logo logo-light">
                       <span class="logo-sm">
-                          <img src="assets/images/logo-light-sm.png" alt="" height="26">
+                          <img src="{{ asset($company->logo ?? 'default/image/company_log/company_logo.png') }}" alt="" height="26">
                       </span>
                       <span class="logo-lg">
-                          <img src="assets/images/logo-light.png" alt="" height="30">
+                          <img src="{{ asset($company->logo ?? 'default/image/company_log/company_logo.png') }}" alt="" height="30">
                       </span>
                   </a>
               </div>

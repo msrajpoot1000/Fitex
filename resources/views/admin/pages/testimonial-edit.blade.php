@@ -68,7 +68,7 @@
                         </div>
 
                         {{-- rating  && status --}}
-                        {{-- <div class="row">
+                        <div class="row">
                             <!-- Rating -->
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -102,7 +102,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
                         <!-- Testimonial Description -->
                         <div class="row mt-4">
@@ -110,7 +110,7 @@
                                 <label for="description" class="form-label">Testimonial Description <span
                                         class="astrick">*</span></label>
                                 <div class="editor-wrapper">
-                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"
+                                    <textarea name="description" id="description1" class="form-control @error('description') is-invalid @enderror"
                                         placeholder="Write testimonial...">{{ old('description', $testimonial->description) }}</textarea>
                                 </div>
                                 @error('description')

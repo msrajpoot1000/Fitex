@@ -63,7 +63,7 @@
                                         class="form-control @error('client_position') is-invalid @enderror"
                                         name="client_position" id="client_position" value="{{ old('client_position') }}"
                                         required>
-                                    @error('client_position')  
+                                    @error('client_position')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -71,7 +71,7 @@
                         </div>
 
                         {{-- rating and status  --}}
-                        {{-- <div class="row">
+                        <div class="row">
                             <!-- Rating -->
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -88,10 +88,10 @@
                             <!-- Status -->
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    
+
                                     <label for="status" class="form-label">Status</label>
                                     <br>
-                                    <select name="status" 
+                                    <select name="status"
                                         class="form-select form-control @error('status') is-invalid @enderror">
                                         <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Active</option>
                                         <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Inactive</option>
@@ -101,7 +101,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
                         <!-- Testimonial Description -->
                         <div class="row mt-4">

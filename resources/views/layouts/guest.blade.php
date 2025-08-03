@@ -18,21 +18,21 @@
 
 
     <!-- Plugin CSS -->
-    <link href="{{ URL::asset('assets/admin/libs/jsvectormap/css/jsvectormap.min.css') }}" rel="stylesheet"
+    <link href="{{ URL::asset('build/libs/jsvectormap/css/jsvectormap.min.css') }}" rel="stylesheet"
         type="text/css" />
 
     <!-- Bootstrap CSS -->
-    <link href="{{ URL::asset('assets/admin/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet"
+    <link href="{{ URL::asset('build/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet"
         type="text/css" />
 
     <!-- Icons CSS -->
-    <link href="{{ URL::asset('assets/admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('build/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- App CSS -->
-    <link href="{{ URL::asset('assets/admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('build/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
     {{-- Custom Css  --}}
-    <link href="{{ URL::asset('assets/admin/css/style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('build/css/style.css') }}" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -54,7 +54,7 @@
 
 
     {{-- Custom Script  --}}
-    <script src="{{ URL::asset('assets/admin/js/custom-script.js') }}"></script>
+    <script src="{{ URL::asset('build/js/custom-script.js') }}"></script>
 
 
     <!-- JAVASCRIPT -->

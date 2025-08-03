@@ -15,6 +15,7 @@ return new class extends Migration
         $table->id();
         $table->string('companyname');
         $table->string('logo')->nullable();
+        $table->string('favicon')->nullable();
         $table->string('email')->unique();
         $table->string('phone', 15);
         $table->string('phone2', 15);

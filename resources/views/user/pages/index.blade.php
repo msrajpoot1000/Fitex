@@ -6,6 +6,21 @@
 
 @section('title', 'Fitex | Home')
 
+@section('style')
+    <style>
+        .testimonial-pagination {
+            margin-top: -3rem !important;
+            /* border: 1px solid red; */
+            /* width: 100%; */
+            display:flex;
+            justify-content: left;
+            align-content: center
+        }
+
+
+    </style>
+@endsection
+
 @section('write')
     <!-- Body main wrapper start -->
 
@@ -16,43 +31,38 @@
         <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="900" data-center="0" data-variable-width="0"
             data-slides-per-view="1">
             <div class="cs_slider_wrapper">
-                <div class="cs_slide">
-                    <div class="cs_hero cs_style_1 cs_bg_filed cs_primary_bg cs_center" data-src="">
-                        <div class="container">
-                            <div class="cs_hero_text wow fadeInRight" data-wow-duration="0.9s" data-wow-delay="0.25s">
-                                <h3 class="cs_hero_mini_title cs_accent_color cs_fs_18 cs_medium cs_mb_8">
-                                    <img src="assets/img/icons/fan.svg" alt="">
-                                    Fitex Uniforms
-                                </h3>
-                                <h1 class="cs_hero_title cs_white_color cs_fs_74 cs_mb_18">Your Identity, Our Uniforms</h1>
-                                <p class="cs_hero_subtitle cs_white_color cs_mb_34">We design and deliver high-quality
-                                    uniforms for schools, hospitals, corporates, and industries — combining comfort,
-                                    durability, and style in every stitch.</p>
-                                <div class="cs_hero_btns">
-                                    <a href="{{ route('user.pages.contact') }}" class="cs_btn cs_style_1">
-                                        <span>Contact Us</span>
-                                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M8.28125 0.71875L13.7812 5.96875C13.9271 6.11458 14 6.29167 14 6.5C14 6.70833 13.9271 6.88542 13.7812 7.03125L8.28125 12.2812C7.90625 12.5729 7.55208 12.5729 7.21875 12.2812C6.92708 11.9062 6.92708 11.5521 7.21875 11.2188L11.375 7.25H0.75C0.291667 7.20833 0.0416667 6.95833 0 6.5C0.0416667 6.04167 0.291667 5.79167 0.75 5.75H11.375L7.21875 1.78125C6.92708 1.44792 6.92708 1.09375 7.21875 0.71875C7.55208 0.427083 7.90625 0.427083 8.28125 0.71875Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                    </a>
-                                    <!--<a href="https://www.youtube.com/embed/rRid6GCJtgc" class="cs_hero_player_btn cs_video_open">-->
-                                    <!--  <span class="cs_player_btn cs_center">-->
-                                    <!--    <span></span>-->
-                                    <!--  </span>-->
-                                    <!--  <span class="cs_hero_play_btn_text">Watch Our Story</span>-->
-                                    <!--</a>-->
+                @foreach ($homeSliders as $item)
+                    <div class="cs_slide">
+                        <div class="cs_hero cs_style_1 cs_bg_filed cs_primary_bg cs_center" data-src="">
+                            <div class="container">
+                                <div class="cs_hero_text wow fadeInRight" data-wow-duration="0.9s" data-wow-delay="0.25s">
+                                    <h3 class="cs_hero_mini_title cs_accent_color cs_fs_18 cs_medium cs_mb_8">
+                                        <img src="assets/img/icons/fan.svg" alt="">
+                                        Fitex Uniforms
+                                    </h3>
+                                    <h1 class="cs_hero_title cs_white_color cs_fs_74 cs_mb_18">{{ $item->title }}</h1>
+                                    <p class="cs_hero_subtitle cs_white_color cs_mb_34">{!! $item->description !!}</p>
+                                    <div class="cs_hero_btns">
+                                        <a href="{{ route('user.pages.contact') }}" class="cs_btn cs_style_1">
+                                            <span>Contact Us</span>
+                                            <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M8.28125 0.71875L13.7812 5.96875C13.9271 6.11458 14 6.29167 14 6.5C14 6.70833 13.9271 6.88542 13.7812 7.03125L8.28125 12.2812C7.90625 12.5729 7.55208 12.5729 7.21875 12.2812C6.92708 11.9062 6.92708 11.5521 7.21875 11.2188L11.375 7.25H0.75C0.291667 7.20833 0.0416667 6.95833 0 6.5C0.0416667 6.04167 0.291667 5.79167 0.75 5.75H11.375L7.21875 1.78125C6.92708 1.44792 6.92708 1.09375 7.21875 0.71875C7.55208 0.427083 7.90625 0.427083 8.28125 0.71875Z"
+                                                    fill="currentColor" />
+                                            </svg>
+                                        </a>
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="cs_hero_img">
-                            <img src="assets/img/hero_img_1.png" alt="" style="opacity: 0.4;">
+                            <div class="cs_hero_img">
+                                <img src="{{ asset($item->banner_image) }}" alt="" style="opacity: 0.4;">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="cs_slide">
+                @endforeach
+                {{-- <div class="cs_slide">
                     <div class="cs_hero cs_style_1 cs_bg_filed cs_primary_bg cs_center"
                         data-src="assets/img/hero_bg_2x.jpg">
                         <div class="container">
@@ -125,7 +135,7 @@
                         <div class="cs_hero_img"><img src="assets/img/hero_img_3.png" alt="" style="opacity: 0.4">
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="cs_pagination cs_style_1"></div>
         </div>
@@ -153,21 +163,19 @@
                         <div class="cs_about_content">
                             <div class="cs_section_heading cs_style_1 cs_mb_22">
                                 <h3 class="cs_section_subtitle cs_accent_color text-uppercase cs_medium cs_fs_20 cs_mb_10">
-                                    <img src="assets/img/icons/fan.svg" alt=""
-                                        class="cs_section_subheading_icon">
+                                    <img src="assets/img/icons/fan.svg" alt="" class="cs_section_subheading_icon">
                                     About us
                                 </h3>
                                 <h2 class="cs_section_title cs_fs_48 cs_semibold mb-0">Where Quality Meets Professionalism
                                 </h2>
                             </div>
-                            <p class="cs_mb_30">Founded with a vision to elevate workplace attire, we specialize in
-                                designing and manufacturing premium-quality uniforms for schools, hospitals, corporate
-                                offices, industries, and more. With years of expertise and a passion for precision, we blend
-                                comfort, durability, and modern style in every stitch.
-
-                                Our team is committed to delivering tailored solutions that reflect your brand and fit your
-                                team perfectly. From classic cuts to customized logos, we offer a wide range of uniform
-                                options crafted to your needs.</p>
+                            <p class="cs_mb_30">Fitex Uniforms is a leading manufacturer and bulk supplier of high-quality,
+                                custom uniforms across a wide
+                                range of industries including healthcare, hospitality, corporate, industrial, educational,
+                                and security sectors.
+                                With a monthly production capacity of 45,000+ pieces, we are equipped to handle large-scale
+                                demands
+                                without compromising on precision, quality, or delivery timelines.</p>
 
                             <div class="cs_height_33 cs_height_lg_30"></div>
                             <div class="cs_about_btns">
@@ -210,8 +218,7 @@
                         <div class="cs_service_card cs_style_1 text-center" style="height: auto">
                             <div class="cs_service_card_in shadow-box">
                                 <img src="assets/img/icons/security.png" alt="">
-                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15"
-                                    >Security Uniforms</h3>
+                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15">Security Uniforms</h3>
                             </div>
                         </div>
                     </a>
@@ -221,8 +228,7 @@
                         <div class="cs_service_card cs_style_1 text-center" style="height: auto">
                             <div class="cs_service_card_in shadow-box">
                                 <img src="assets/img/icons/hospitality.png" alt="" style="width:50%">
-                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15"
-                                    >Healthcare</h3>
+                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15">Healthcare</h3>
                             </div>
                         </div>
                     </a>
@@ -232,8 +238,7 @@
                         <div class="cs_service_card cs_style_1 text-center" style="height: auto">
                             <div class="cs_service_card_in shadow-box">
                                 <img src="assets/img/icons/healthcare.png" alt="" style="width:50%">
-                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15"
-                                    >Hospitality</h3>
+                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15">Hospitality</h3>
                             </div>
                         </div>
                     </a>
@@ -243,13 +248,12 @@
                         <div class="cs_service_card cs_style_1 text-center" style="height: auto">
                             <div class="cs_service_card_in shadow-box">
                                 <img src="assets/img/service_icon_1.png" alt="" style="width:50%">
-                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15"
-                                    >Construction</h3>
+                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15">Construction</h3>
                             </div>
                         </div>
                     </a>
                 </div>
-              
+
 
 
 
@@ -804,98 +808,38 @@
                         <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="900"
                             data-center="0" data-variable-width="0" data-slides-per-view="1">
                             <div class="cs_slider_wrapper">
-                                <div class="cs_slide">
-                                    <div class="cs_testimonial cs_style_1">
-                                        <div class="cs_rating cs_accent_color" data-rating="4.5">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <div class="cs_rating_percentage">
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
+                                @foreach ($testimonials as $item)
+                                    <div class="cs_slide">
+                                        <div class="cs_testimonial cs_style_1">
+                                            <div class="cs_rating cs_accent_color" data-rating="{{ $item->rating }}">
+                                                <div class="cs_rating_percentage">
+                                                    <i class="fa-solid fa-star fa-fw"></i>
+                                                    <i class="fa-solid fa-star fa-fw"></i>
+                                                    <i class="fa-solid fa-star fa-fw"></i>
+                                                    <i class="fa-solid fa-star fa-fw"></i>
+                                                    <i class="fa-solid fa-star fa-fw"></i>
+                                                    <i class="fa-solid fa-star fa-fw"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <blockquote class="cs_testimonial_blockquote cs_white_color cs_mb_25 cs_fs_16">The
-                                            uniforms supplied by your team are not only professional and hygienic but also
-                                            extremely comfortable for our long shifts. The fabric quality and stitching
-                                            reflect premium craftsmanship.</blockquote>
-                                        <div class="cs_testimonial_avatar_box">
-                                            <img src="assets/img/avatar_1.png" alt=""
-                                                class="cs_testimonial_avatar_img">
-                                            <div class="cs_testimonial_avatar_right">
-                                                <h3 class="cs_fs_24 cs_accent_color cs_mb_1"> Dr. Anjali Mehra</h3>
-                                                <p class="mb-0">Chief Medical Officer, Medilife Hospital</p>
+                                            <blockquote class="cs_testimonial_blockquote cs_white_color cs_mb_25 cs_fs_16">
+                                                {!! $item->description !!}</blockquote>
+                                            <div class="cs_testimonial_avatar_box">
+                                                <img src="assets/img/avatar_1.png" alt=""
+                                                    class="cs_testimonial_avatar_img">
+                                                <div class="cs_testimonial_avatar_right">
+                                                    <h3 class="cs_fs_24 cs_accent_color cs_mb_1"> {{ $item->client_name }}
+                                                    </h3>
+                                                    <p class="mb-0">{{ $item->client_postion }}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="cs_slide">
-                                    <div class="cs_testimonial cs_style_1">
-                                        <div class="cs_rating cs_accent_color" data-rating="4.5">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <div class="cs_rating_percentage">
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                            </div>
-                                        </div>
-                                        <blockquote class="cs_testimonial_blockquote cs_white_color cs_mb_25 cs_fs_16">
-                                            Durability and safety are non-negotiable on-site, and your uniforms exceed both.
-                                            High-visibility, breathable fabric, and strong build — exactly what we needed
-                                            for our workforce.</blockquote>
-                                        <div class="cs_testimonial_avatar_box">
-                                            <img src="assets/img/avatar_1.png" alt=""
-                                                class="cs_testimonial_avatar_img">
-                                            <div class="cs_testimonial_avatar_right">
-                                                <h3 class="cs_fs_24 cs_accent_color cs_mb_1">Mr. Rajesh Verma</h3>
-                                                <p class="mb-0">Project Head, Skyline Constructions</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cs_slide">
-                                    <div class="cs_testimonial cs_style_1">
-                                        <div class="cs_rating cs_accent_color" data-rating="4.5">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <div class="cs_rating_percentage">
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                                <i class="fa-solid fa-star fa-fw"></i>
-                                            </div>
-                                        </div>
-                                        <blockquote class="cs_testimonial_blockquote cs_white_color cs_mb_25 cs_fs_16">
-                                            Your custom-designed uniforms have elevated our staff’s appearance and brand
-                                            image. Guests frequently compliment the polished, elegant look — thank you for
-                                            maintaining both style and comfort</blockquote>
-                                        <div class="cs_testimonial_avatar_box">
-                                            <img src="assets/img/avatar_1.png" alt=""
-                                                class="cs_testimonial_avatar_img">
-                                            <div class="cs_testimonial_avatar_right">
-                                                <h3 class="cs_fs_24 cs_accent_color cs_mb_1">Ms. Priya Sen</h3>
-                                                <p class="mb-0">Operations Manager, Golden Orchid Hotels</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
-                            <div class="cs_pagination cs_style_2"></div>
+                            <div class="testimonial-pagination">
+                                <div class="cs_pagination  cs_style_2"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -956,45 +900,24 @@
                             Faq
                         </h3>
                         <h2 class="cs_section_title cs_fs_48 cs_semibold mb-0">Frequently Asked Questions</h2>
-                        <p class="cs_section_text">Air conditioning system is best for your home Our FrostFree
-                            Consultation air a service provides expert guidance tailored to your specific needs.</p>
+                        <p class="cs_section_text">Talk to our agent directly: <strong>+1 (647) 867-3159</strong>
+                            Based in Canada, serving businesses nationwide and beyond.</p>
                     </div>
                     <div class="cs_height_45 cs_height_lg_45"></div>
                     <div class="cs_accordians cs_style_1">
-                        <div class="cs_accordian active">
-                            <div class="cs_accordian_head">
-                                <h2 class="cs_accordian_title cs_fs_18 cs_medium mb-0">Which type of uniform is best for
-                                    my organization?</h2>
-                                <span class="cs_accordian_toggle"></span>
-                            </div>
-                            <div class="cs_accordian_body">
-                                <p>Our team provides free consultation to help you choose the right fabric, design, and
-                                    style based on your industry—whether it's for schools, hospitals, corporate teams, or
-                                    industrial use.</p>
-                            </div>
-                        </div><!-- .cs_accordian -->
-                        <div class="cs_accordian">
-                            <div class="cs_accordian_head">
-                                <h2 class="cs_accordian_title cs_fs_18 cs_medium mb-0">Can I customize uniforms with my
-                                    company logo?</h2>
-                                <span class="cs_accordian_toggle"></span>
-                            </div>
-                            <div class="cs_accordian_body">
-                                <p>Yes! We offer complete customization including embroidery or printing of logos, taglines,
-                                    or any specific design elements.</p>
-                            </div>
-                        </div><!-- .cs_accordian -->
-                        <div class="cs_accordian">
-                            <div class="cs_accordian_head">
-                                <h2 class="cs_accordian_title cs_fs_18 cs_medium mb-0">Do you offer bulk order discounts?
-                                </h2>
-                                <span class="cs_accordian_toggle"></span>
-                            </div>
-                            <div class="cs_accordian_body">
-                                <p>Absolutely. We provide competitive pricing and attractive discounts for bulk or recurring
-                                    orders.</p>
-                            </div>
-                        </div><!-- .cs_accordian -->
+                        @foreach ($faqs as $item)
+                            <div class="cs_accordian {{ $loop->first ? 'active' : '' }}">
+
+                                <div class="cs_accordian_head">
+                                    <h2 class="cs_accordian_title cs_fs_18 cs_medium mb-0">{{ $item->question }}</h2>
+                                    <span class="cs_accordian_toggle"></span>
+                                </div>
+                                <div class="cs_accordian_body">
+                                    <p>{!! $item->answer !!}</p>
+                                </div>
+                            </div><!-- .cs_accordian -->
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -1128,8 +1051,8 @@
                         <div class="cs_post cs_style_3">
                             <div class="cs_post_thumb_out">
                                 <div class="cs_post_thumb_wrap">
-                                    <a href="{{ route('user.pages.blog-details', $blog->id) }}" class="cs_post_thumb"><img
-                                            src="{{ $blog->blog_image }}" alt=""></a>
+                                    <a href="{{ route('user.pages.blog-details', $blog->id) }}"
+                                        class="cs_post_thumb"><img src="{{ $blog->blog_image }}" alt=""></a>
                                 </div>
                                 <span class="cs_posted_by cs_fs_24 cs_semibold cs_heading_color cs_heading_font">
                                     <i class="fa-regular fa-calendar-alt"></i> {{ $blog->blog_date }}

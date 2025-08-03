@@ -12,7 +12,7 @@
                       <a href="{{ $company->linkedin }}" class="cs_social_btn cs_center">
                           <i class="fa-brands fa-linkedin-in"></i>
                       </a>
-                      <a href="{{ $company->linkedin }}" class="cs_social_btn cs_center">
+                      <a href="{{ $company->instagram }}" class="cs_social_btn cs_center">
                           <i class="fa-brands fa-instagram"></i>
                       </a>
 
@@ -75,7 +75,6 @@
                           <ul class="cs_footer_menu_2">
                               <li><a href="{{ route('user.pages.index') }}">Home</a></li>
                               <li><a href="{{ route('user.pages.aboutus') }}">About </a></li>
-                              <li><a href="{{ route('user.pages.services') }}">Services</a></li>
                               <li><a href="{{ route('user.pages.blog') }}">Blog</a></li>
                               <li><a href="{{ route('user.pages.contact') }}">Contact</a></li>
                           </ul>

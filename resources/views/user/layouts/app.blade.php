@@ -1,3 +1,8 @@
+@php
+    use Illuminate\Support\Facades\DB;
+    $company = DB::table('companyinfos')->first(); // ✅ returns only the first row (an object)
+@endphp
+
 <html class="no-js" lang="en">
 
 <head>
@@ -6,10 +11,35 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="ThemeServices">
-    <!-- Favicon Icon -->
-    <link rel="icon" href="assets/img/favicon.png">
+    @php
+        $extension = '';
+
+        if (!empty($company->favicon)) {
+            $extension = pathinfo($company->favicon, PATHINFO_EXTENSION);
+        }
+
+        $faviconPath = $company->favicon ?? 'default/image/favicon/default_favicon.ico';
+    @endphp
+
+    @if (!empty($company->favicon))
+        @switch($extension)
+            @case('svg')
+                <link rel="icon" href="{{ asset($faviconPath) }}" type="image/svg+xml">
+            @break
+
+            @case('png')
+                <link rel="icon" href="{{ asset($faviconPath) }}" type="image/png">
+            @break
+
+            @default
+                <link rel="icon" href="{{ asset($faviconPath) }}" type="image/x-icon">
+        @endswitch
+    @else
+        <link rel="icon" href="{{ asset($faviconPath) }}" type="image/x-icon">
+    @endif
     <!-- Site Title -->
     <title>@yield('title')</title>
+    @yield('style')
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">

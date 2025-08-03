@@ -133,29 +133,29 @@ class TestimonialContoller extends Controller
              'status',
          ]);
      
-         // Handle new photo upload
-         if ($request->hasFile('photo')) {
-             $folder = 'upload/testimonials';
-             $path = public_path($folder);
-     
-             // Delete old photo if it exists
-             if ($testimonial->photo && file_exists(public_path($testimonial->photo))) {
-                 unlink(public_path($testimonial->photo));
-             }
-     
-             // Create folder if not exists
-             if (!file_exists($path)) {
-                 mkdir($path, 0777, true);
-             }
-     
-             // Save new photo
-             $file = $request->file('photo');
-             $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-             $file->move($path, $filename);
-     
-             $data['photo'] = $folder . '/' . $filename;
-         }
-     
+            // Handle new photo upload
+            if ($request->hasFile('photo')) {
+                $folder = 'upload/testimonials';
+                $path = public_path($folder);
+        
+                // Delete old photo if it exists
+                if ($testimonial->photo && file_exists(public_path($testimonial->photo))) {
+                    unlink(public_path($testimonial->photo));
+                }
+        
+                // Create folder if not exists
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+        
+                // Save new photo
+                $file = $request->file('photo');
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move($path, $filename);
+        
+                $data['photo'] = $folder . '/' . $filename;
+            }
+        
          // Update testimonial
          $testimonial->update($data);
      

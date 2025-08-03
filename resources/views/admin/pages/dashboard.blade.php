@@ -1,6 +1,13 @@
+@php
+    $companyinfos = DB::table('companyinfos')->first();
+    $company = \DB::table('companyinfos')->first();
+@endphp
+
 @extends('admin.layouts.app')
 
 @section('title', 'dashboard')
+
+
 
 @section('content')
 
@@ -20,7 +27,8 @@
         <div id="mini-4" data-colors='["--bs-danger"]'></div>
 
         <!-- Bar chart -->
-        <div id="overview" data-colors='["--bs-info", "--bs-primary", "--bs-success", "--bs-warning", "--bs-danger"]'></div>
+        <div id="overview" data-colors='["--bs-info", "--bs-primary", "--bs-success", "--bs-warning", "--bs-danger"]'>
+        </div>
 
         <!-- Donut chart -->
         <div id="saleing-categories" data-colors='["--bs-primary", "--bs-warning", "--bs-success", "--bs-danger"]'></div>
@@ -59,8 +67,8 @@
                                                             onsubmit="return confirm('Are you sure you want to delete this company info?');">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="dropdown-item text-danger">All
-                                                                Remove</button>
+                                                            {{-- <button type="submit" class="dropdown-item text-danger">All
+                                                                Remove</button> --}}
                                                         </form>
                                                     @endif
                                                 </div>
@@ -77,8 +85,8 @@
 
 
                                 <div class="mt-n5 position-relative text-center border-bottom pb-3">
-                                    <img src="{{ asset($company->logo) }}" alt=""
-                                        class="avatar-xl rounded-circle img-thumbnail">
+                                    <img src="{{ asset($company->logo ?? 'default/image/company_log/company_logo.png') }}"
+                                        alt="" class="avatar-xl rounded-circle img-thumbnail">
 
                                     <div class="mt-3">
                                         <h5 class="mb-1">{{ $companyinfos->companyname }}</h5>
