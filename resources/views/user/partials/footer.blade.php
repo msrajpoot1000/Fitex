@@ -1,11 +1,29 @@
   @php
       use Illuminate\Support\Facades\DB;
       $company = DB::table('companyinfos')->first(); // ✅ returns only the first row (an object)
+      use App\Models\Blog;
+      $blogs = Blog::limit(2)->get();
   @endphp
+
+  <style>
+      .two-line-clamp {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          /* Number of lines to show */
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+      }
+
+
+      .footer-list li::before {
+          content: none !important;
+      }
+  </style>
 
 
   <footer class="cs_footer cs_style_1">
-      <div class="cs_footer_top">
+      <div class="cs_footer_top ">
           <div class="container">
               <div class="cs_footer_top_in">
                   <div class="cs_social_btns cs_style_1">
@@ -44,88 +62,82 @@
       </div>
       <div class="cs_main_footer cs_bg_filed cs_primary_bg cs_white_color" data-src="assets/img/footer_bg_1.jpg">
           <div class="container">
-              <div class="cs_footer_row cs_type_1">
-                  {{-- <div class="cs_footer_col">
-                      <div class="cs_footer_widget">
-                          <h2 class="cs_footer_widget_title cs_fs_24 cs_semibold cs_white_color cs_mb_10">Industries
-                              Served</h2>
-                          <div class="cs_footer_widget_seperator">
-                              <span class="cs_accent_bg"></span>
-                              <span class="cs_white_bg"></span>
-                              <span class="cs_white_bg"></span>
+              <div class="container">
+                  <div class="row">
+                      <!-- First Column -->
+                      <div class="col-lg-6 col-md-6 col-sm-12 pt-4">
+                          <div class="cs_footer_widget">
+                              <div class="cs_footer_logo wow zoomIn" data-wow-duration="0.9s" data-wow-delay="0.25s"
+                                  style="display:flex">
+                                  <div style="background-color: white;display:block">
+                                      <img src="{{ asset($company->logo) }}" alt="Logo" style="width:5rem">
+                                  </div>
+                              </div>
+                              <h2 class="cs_footer_widget_title cs_fs_24 cs_semibold cs_white_color cs_mb_10 mt-4">
+                                  {{ $company->companyname }} Uniforms
+                              </h2>
+                              <p>{!! $company->company_description !!}</p>
                           </div>
-                          <ul class="cs_footer_menu_2">
-                              <li><a href="service-details.html">Security</a></li>
-                              <li><a href="service-details.html">HealthCare</a></li>
-                              <li><a href="service-details.html">Hospitality</a></li>
-                              <li><a href="service-details.html">Construction</a></li>
-                          </ul>
                       </div>
-                  </div> --}}
 
-                  <div class="cs_footer_col">
-                      <div class="cs_footer_widget">
-                          <h2 class="cs_footer_widget_title cs_fs_24 cs_semibold cs_white_color cs_mb_10">Quick links
-                          </h2>
-                          <div class="cs_footer_widget_seperator">
-                              <span class="cs_accent_bg"></span>
-                              <span class="cs_white_bg"></span>
-                              <span class="cs_white_bg"></span>
+                      <!-- Second Column -->
+                      <div class="col-lg-3 col-md-6 col-sm-12 pt-4">
+                          <div class="cs_footer_widget">
+                              <h2 class="cs_footer_widget_title cs_fs_24 cs_semibold cs_white_color cs_mb_10">Quick
+                                  links</h2>
+                              <div class="cs_footer_widget_seperator">
+                                  <span class="cs_accent_bg"></span>
+                                  <span class="cs_white_bg"></span>
+                                  <span class="cs_white_bg"></span>
+                              </div>
+                              <ul class="cs_footer_menu_2 footer-list">
+                                  <li><a href="{{ route('user.pages.index') }}"><i class="fa-solid fa-angle-right"></i> Home</a></li>
+                                  <li><a href="{{ route('user.pages.aboutus') }}"><i class="fa-solid fa-angle-right"></i> About</a></li>
+                                  <li><a href="{{ route('user.pages.blog') }}"><i class="fa-solid fa-angle-right"></i> Blog</a></li>
+                                  <li><a href="{{ route('user.pages.contact') }}"><i class="fa-solid fa-angle-right"></i> Contact</a></li>
+                              </ul>
                           </div>
-                          <ul class="cs_footer_menu_2">
-                              <li><a href="{{ route('user.pages.index') }}">Home</a></li>
-                              <li><a href="{{ route('user.pages.aboutus') }}">About </a></li>
-                              <li><a href="{{ route('user.pages.blog') }}">Blog</a></li>
-                              <li><a href="{{ route('user.pages.contact') }}">Contact</a></li>
-                          </ul>
                       </div>
-                  </div>
-                  <div class="cs_footer_col">
-                      <div class="cs_footer_widget">
-                          <h2 class="cs_footer_widget_title cs_fs_24 cs_semibold cs_white_color cs_mb_10">Recent Post
-                          </h2>
-                          <div class="cs_footer_widget_seperator">
-                              <span class="cs_accent_bg"></span>
-                              <span class="cs_white_bg"></span>
-                              <span class="cs_white_bg"></span>
+
+                      <!-- Third Column -->
+                      <div class="col-lg-3 col-md-6 col-sm-12 pt-4">
+                          <div class="cs_footer_widget">
+                              <h2 class="cs_footer_widget_title cs_fs_24 cs_semibold cs_white_color cs_mb_10">Recent
+                                  Post</h2>
+                              <div class="cs_footer_widget_seperator">
+                                  <span class="cs_accent_bg"></span>
+                                  <span class="cs_white_bg"></span>
+                                  <span class="cs_white_bg"></span>
+                              </div>
+                              <ul class="cs_recent_post_widget">
+                                  @foreach ($blogs as $item)
+                                      <li>
+                                          <div class="cs_recent_post">
+                                              <a href="{{ route('user.pages.blog-details', $item->id) }}"
+                                                  class="cs_recent_post_thumb">
+                                                  <img src="{{ asset($item->blog_image) }}" alt="">
+                                              </a>
+                                              <div class="cs_recent_post_right">
+                                                  <p class="cs_recent_posted_by cs_fs_14">
+                                                      <i class="fa-solid fa-calendar-alt"></i>
+                                                      {{ \Carbon\Carbon::parse($item->blog_date)->format('d/m/Y') }}
+                                                  </p>
+                                                  <h3 class="cs_white_color cs_fs_18 cs_medium mb-0">
+                                                      <a href="{{ route('user.pages.blog-details', $item->id) }}"
+                                                          class="two-line-clamp">
+                                                          {{ $item->title }}
+                                                      </a>
+                                                  </h3>
+                                              </div>
+                                          </div>
+                                      </li>
+                                  @endforeach
+                              </ul>
                           </div>
-                          <ul class="cs_recent_post_widget">
-                              <li>
-                                  <div class="cs_recent_post">
-                                      <a href="blog-details.html" class="cs_recent_post_thumb">
-                                          <img src="assets/img/recent_post_1.jpg" alt="">
-                                      </a>
-                                      <div class="cs_recent_post_right">
-                                          <p class="cs_recent_posted_by cs_fs_14">
-                                              <i class="fa-solid fa-calendar-alt"></i>
-                                              12 May, 2024
-                                          </p>
-                                          <h3 class="cs_white_color cs_fs_18 cs_medium mb-0">
-                                              <a href="blog-details.html">Outdoor and Landscape Lighting</a>
-                                          </h3>
-                                      </div>
-                                  </div>
-                              </li>
-                              <li>
-                                  <div class="cs_recent_post">
-                                      <a href="blog-details.html" class="cs_recent_post_thumb">
-                                          <img src="assets/img/recent_post_2.jpg" alt="">
-                                      </a>
-                                      <div class="cs_recent_post_right">
-                                          <p class="cs_recent_posted_by cs_fs_14">
-                                              <i class="fa-solid fa-calendar-alt"></i>
-                                              10 May, 2024
-                                          </p>
-                                          <h3 class="cs_white_color cs_fs_18 cs_medium mb-0">
-                                              <a href="blog-details.html">Panel Upgrades and Maintenance</a>
-                                          </h3>
-                                      </div>
-                                  </div>
-                              </li>
-                          </ul>
                       </div>
                   </div>
               </div>
+
           </div>
       </div>
       <div class="cs_footer_bottom cs_accent_bg cs_white_color">

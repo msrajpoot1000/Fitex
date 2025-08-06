@@ -4,7 +4,7 @@
 @endphp
 @extends('user.layouts.app')
 
-@section('title', 'Fitex | Home')
+@section('title', 'Fitex Uniforms | Home')
 
 @section('style')
     <style>
@@ -12,12 +12,18 @@
             margin-top: -3rem !important;
             /* border: 1px solid red; */
             /* width: 100%; */
-            display:flex;
+            display: flex;
             justify-content: left;
             align-content: center
         }
 
-
+        .why-choose-banner-design {
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: scroll;
+            background-color: #f0f0f0;
+        }
     </style>
 @endsection
 
@@ -144,7 +150,7 @@
 
 
     <!-- Start About Section -->
-    <section>
+    {{-- <section>
         <div class="cs_height_120 cs_height_lg_80"></div>
         <div class="cs_about cs_style_1">
             <div class="container">
@@ -152,11 +158,7 @@
                     <div class="col-xl-6 wow fadeInLeft" data-wow-duration="0.9s" data-wow-delay="0.25s">
                         <div class="cs_about_thumb">
                             <img src="assets/img/about_img_1.png" alt="About">
-                            {{-- <a href="https://www.youtube.com/embed/rRid6GCJtgc" class="cs_about_player_btn cs_video_open">
-                                <span class="cs_player_btn cs_center">
-                                    <span></span>
-                                </span>
-                            </a> --}}
+
                         </div>
                     </div>
                     <div class="col-xl-6">
@@ -197,8 +199,13 @@
             </div>
         </div>
         <div class="cs_height_120 cs_height_lg_80"></div>
-    </section>
+    </section> --}}
     <!-- End About Section -->
+
+
+    {{-- uniforms served --}}
+
+
     <!-- Start Service Section -->
     <section class="cs_bg_filed" data-src="assets/img/service_bg_1.svg">
         <div class="cs_height_115 cs_height_lg_70"></div>
@@ -207,52 +214,25 @@
                 <h3 class="cs_section_subtitle cs_accent_color text-uppercase cs_medium cs_fs_20 cs_mb_10 wow fadeInUp"
                     data-wow-duration="0.9s" data-wow-delay="0.25s">
                     <img src="assets/img/icons/fan.svg" alt="" class="cs_section_subheading_icon">
-                    our bast services
+                    our best services
                 </h3>
-                <h2 class="cs_section_title cs_fs_48 cs_semibold mb-0">Industries Served</h2>
+                <h2 class="cs_section_title cs_fs_48 cs_semibold mb-0">Uniforms Served</h2>
             </div>
             <div class="cs_height_45 cs_height_lg_45"></div>
             <div class="row cs_gap_y_30">
-                <div class="col-lg-3 col-md-6 ">
-                    <a href="https://www.hostinger.com/in" class="">
-                        <div class="cs_service_card cs_style_1 text-center" style="height: auto">
-                            <div class="cs_service_card_in shadow-box">
-                                <img src="assets/img/icons/security.png" alt="">
-                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15">Security Uniforms</h3>
+                @foreach ($industries as $item)
+                    <div class="col-lg-3 col-md-6 ">
+                        <a href="{{ route('user.pages.industry-page', $item->id) }}" class="">
+                            <div class="cs_service_card cs_style_1 text-center" style="height: auto">
+                                <div class="cs_service_card_in shadow-box">
+                                    <img src="{{ $item->logo }}" alt="">
+                                    <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15">{{ $item->name }}</h3>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 ">
-                    <a href="https://www.hostinger.com/in" class="">
-                        <div class="cs_service_card cs_style_1 text-center" style="height: auto">
-                            <div class="cs_service_card_in shadow-box">
-                                <img src="assets/img/icons/hospitality.png" alt="" style="width:50%">
-                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15">Healthcare</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 ">
-                    <a href="https://www.hostinger.com/in" class="">
-                        <div class="cs_service_card cs_style_1 text-center" style="height: auto">
-                            <div class="cs_service_card_in shadow-box">
-                                <img src="assets/img/icons/healthcare.png" alt="" style="width:50%">
-                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15">Hospitality</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 ">
-                    <a href="https://www.hostinger.com/in" class="">
-                        <div class="cs_service_card cs_style_1 text-center" style="height: auto">
-                            <div class="cs_service_card_in shadow-box">
-                                <img src="assets/img/service_icon_1.png" alt="" style="width:50%">
-                                <h3 class="cs_service_card_title cs_fs_24 cs_semibold cs_mb_15">Construction</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @endforeach
+
 
 
 
@@ -264,532 +244,7 @@
         <div class="cs_height_120 cs_height_lg_80"></div>
     </section>
     <!-- End Service Section -->
-    <!-- Start Team Section -->
-    <!--<section>-->
-    <!--  <div class="cs_height_115 cs_height_lg_70"></div>-->
-    <!--  <div class="container">-->
-    <!--    <div class="cs_slider cs_style_1 cs_slider_gap_30">-->
-    <!--      <div class="cs_slider_heading_1">-->
-    <!--        <div class="cs_section_heading cs_style_1">-->
-    <!--          <h3 class="cs_section_subtitle cs_accent_color text-uppercase cs_medium cs_fs_20 cs_mb_10 wow fadeInLeft" data-wow-duration="0.9s" data-wow-delay="0.25s">-->
-    <!--            <img src="assets/img/icons/fan.svg" alt="" class="cs_section_subheading_icon">-->
-    <!--            Expert Team-->
-    <!--          </h3>-->
-    <!--          <h2 class="cs_section_title cs_fs_48 cs_semibold mb-0">Meet Our Team of Expert</h2>-->
-    <!--        </div>-->
-    <!--        <div class="cs_slider_arrows cs_style_2 cs_hide_md">-->
-    <!--          <div class="cs_left_arrow cs_slider_arrow cs_center">-->
-    <!--            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--              <g clip-path="url(#clip0_5_106)">-->
-    <!--              <path d="M6.4 1.59961L7.52 2.71961L3.04 7.19961H16V8.79961H3.04L7.52 13.2796L6.4 14.3996L0 7.99961L6.4 1.59961Z" fill="white"/>-->
-    <!--              </g>-->
-    <!--              <defs>-->
-    <!--              <clipPath id="clip0_5_106">-->
-    <!--              <rect width="16" height="16" fill="white" transform="matrix(-1 0 0 1 16 0)"/>-->
-    <!--              </clipPath>-->
-    <!--              </defs>-->
-    <!--            </svg> -->
-    <!--          </div>-->
-    <!--          <div class="cs_right_arrow cs_slider_arrow cs_center">-->
-    <!--            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--              <g clip-path="url(#clip0_5_66)">-->
-    <!--              <path d="M9.6 1.59961L8.48 2.71961L12.96 7.19961H0V8.79961H12.96L8.48 13.2796L9.6 14.3996L16 7.99961L9.6 1.59961Z" fill="white"/>-->
-    <!--              </g>-->
-    <!--              <defs>-->
-    <!--              <clipPath id="clip0_5_66">-->
-    <!--              <rect width="16" height="16" fill="white"/>-->
-    <!--              </clipPath>-->
-    <!--              </defs>-->
-    <!--            </svg> -->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <div class="cs_height_45 cs_height_lg_45"></div>-->
-    <!--      <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0" data-variable-width="0" data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2" data-lg-slides="3" data-add-slides="4">-->
-    <!--        <div class="cs_slider_wrapper">-->
-    <!--          <div class="cs_slide">-->
-    <!--            <div class="cs_team_member cs_style_1 text-center">-->
-    <!--              <div class="cs_team_member_in">-->
-    <!--                <div class="cs_team_member_thumb">-->
-    <!--                  <img src="assets/img/team_member_1.png" alt="">-->
-    <!--                  <div class="cs_member_social_btns">-->
-    <!--                    <span class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-solid fa-share-alt"></i>-->
-    <!--                    </span>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-linkedin-in"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-twitter"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-youtube"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-facebook-f"></i>-->
-    <!--                    </a>-->
-    <!--                  </div>-->
-    <!--                </div>-->
-    <!--                <div class="cs_team_member_info">-->
-    <!--                  <h3 class="cs_team_member_name cs_fs_24 cs_semibold cs_mb_4">Kathryn Murphy</h3>-->
-    <!--                  <p class="cs_team_member_designation cs_fs_14 mb-0">Managing Partner</p>-->
-    <!--                </div>-->
-    <!--                <div class="cs_team_member_phone_number cs_fs_18 cs_heading_color">-->
-    <!--                  <img src="assets/img/icons/phone_icon_2.svg" alt="">-->
-    <!--                  (+108) 444-0245-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--              <div class="cs_team_member_shape cs_accent_color">-->
-    <!--                <svg width="300" height="407" viewBox="0 0 300 407" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0.498047V407H300V212.548C175.575 177.381 69.7706 101.188 0 0.498047Z" fill="currentColor"/>-->
-    <!--                </svg>                                       -->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--          <div class="cs_slide">-->
-    <!--            <div class="cs_team_member cs_style_1 text-center">-->
-    <!--              <div class="cs_team_member_in">-->
-    <!--                <div class="cs_team_member_thumb">-->
-    <!--                  <img src="assets/img/team_member_2.png" alt="">-->
-    <!--                  <div class="cs_member_social_btns">-->
-    <!--                    <span class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-solid fa-share-alt"></i>-->
-    <!--                    </span>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-linkedin-in"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-twitter"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-youtube"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-facebook-f"></i>-->
-    <!--                    </a>-->
-    <!--                  </div>-->
-    <!--                </div>-->
-    <!--                <div class="cs_team_member_info">-->
-    <!--                  <h3 class="cs_team_member_name cs_fs_24 cs_semibold cs_mb_4">Marvin McKinney</h3>-->
-    <!--                  <p class="cs_team_member_designation cs_fs_14 mb-0">President Of Sales</p>-->
-    <!--                </div>-->
-    <!--                <div class="cs_team_member_phone_number cs_fs_18 cs_heading_color">-->
-    <!--                  <img src="assets/img/icons/phone_icon_2.svg" alt="">-->
-    <!--                  (+108) 213-1254-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--              <div class="cs_team_member_shape cs_accent_color">-->
-    <!--                <svg width="300" height="407" viewBox="0 0 300 407" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0.498047V407H300V212.548C175.575 177.381 69.7706 101.188 0 0.498047Z" fill="currentColor"/>-->
-    <!--                </svg>                                       -->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--          <div class="cs_slide">-->
-    <!--            <div class="cs_team_member cs_style_1 text-center">-->
-    <!--              <div class="cs_team_member_in">-->
-    <!--                <div class="cs_team_member_thumb">-->
-    <!--                  <img src="assets/img/team_member_3.png" alt="">-->
-    <!--                  <div class="cs_member_social_btns">-->
-    <!--                    <span class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-solid fa-share-alt"></i>-->
-    <!--                    </span>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-linkedin-in"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-twitter"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-youtube"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-facebook-f"></i>-->
-    <!--                    </a>-->
-    <!--                  </div>-->
-    <!--                </div>-->
-    <!--                <div class="cs_team_member_info">-->
-    <!--                  <h3 class="cs_team_member_name cs_fs_24 cs_semibold cs_mb_4">Darlene Robertson</h3>-->
-    <!--                  <p class="cs_team_member_designation cs_fs_14 mb-0">Project Manager</p>-->
-    <!--                </div>-->
-    <!--                <div class="cs_team_member_phone_number cs_fs_18 cs_heading_color">-->
-    <!--                  <img src="assets/img/icons/phone_icon_2.svg" alt="">-->
-    <!--                  (+108) 543-2352-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--              <div class="cs_team_member_shape cs_accent_color">-->
-    <!--                <svg width="300" height="407" viewBox="0 0 300 407" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0.498047V407H300V212.548C175.575 177.381 69.7706 101.188 0 0.498047Z" fill="currentColor"/>-->
-    <!--                </svg>                                       -->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--          <div class="cs_slide">-->
-    <!--            <div class="cs_team_member cs_style_1 text-center">-->
-    <!--              <div class="cs_team_member_in">-->
-    <!--                <div class="cs_team_member_thumb">-->
-    <!--                  <img src="assets/img/team_member_4.png" alt="">-->
-    <!--                  <div class="cs_member_social_btns">-->
-    <!--                    <span class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-solid fa-share-alt"></i>-->
-    <!--                    </span>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-linkedin-in"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-twitter"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-youtube"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-facebook-f"></i>-->
-    <!--                    </a>-->
-    <!--                  </div>-->
-    <!--                </div>-->
-    <!--                <div class="cs_team_member_info">-->
-    <!--                  <h3 class="cs_team_member_name cs_fs_24 cs_semibold cs_mb_4">Cameron William</h3>-->
-    <!--                  <p class="cs_team_member_designation cs_fs_14 mb-0">Managing Partner</p>-->
-    <!--                </div>-->
-    <!--                <div class="cs_team_member_phone_number cs_fs_18 cs_heading_color">-->
-    <!--                  <img src="assets/img/icons/phone_icon_2.svg" alt="">-->
-    <!--                  (+108) 122-3215-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--              <div class="cs_team_member_shape cs_accent_color">-->
-    <!--                <svg width="300" height="407" viewBox="0 0 300 407" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0.498047V407H300V212.548C175.575 177.381 69.7706 101.188 0 0.498047Z" fill="currentColor"/>-->
-    <!--                </svg>                                       -->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--          <div class="cs_slide">-->
-    <!--            <div class="cs_team_member cs_style_1 text-center">-->
-    <!--              <div class="cs_team_member_in">-->
-    <!--                <div class="cs_team_member_thumb">-->
-    <!--                  <img src="assets/img/team_member_2.png" alt="">-->
-    <!--                  <div class="cs_member_social_btns">-->
-    <!--                    <span class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-solid fa-share-alt"></i>-->
-    <!--                    </span>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-linkedin-in"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-twitter"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-youtube"></i>-->
-    <!--                    </a>-->
-    <!--                    <a href="#" class="cs_member_social_item cs_center">-->
-    <!--                      <i class="fa-brands fa-facebook-f"></i>-->
-    <!--                    </a>-->
-    <!--                  </div>-->
-    <!--                </div>-->
-    <!--                <div class="cs_team_member_info">-->
-    <!--                  <h3 class="cs_team_member_name cs_fs_24 cs_semibold cs_mb_4">Marvin McKinney</h3>-->
-    <!--                  <p class="cs_team_member_designation cs_fs_14 mb-0">President Of Sales</p>-->
-    <!--                </div>-->
-    <!--                <div class="cs_team_member_phone_number cs_fs_18 cs_heading_color">-->
-    <!--                  <img src="assets/img/icons/phone_icon_2.svg" alt="">-->
-    <!--                  (+108) 213-1254-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--              <div class="cs_team_member_shape cs_accent_color">-->
-    <!--                <svg width="300" height="407" viewBox="0 0 300 407" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0.498047V407H300V212.548C175.575 177.381 69.7706 101.188 0 0.498047Z" fill="currentColor"/>-->
-    <!--                </svg>                                       -->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <div class="cs_pagination cs_style_2 cs_type_1"></div>-->
-    <!--    </div>-->
-    <!--  </div>-->
-    <!--  <div class="cs_height_120 cs_height_lg_80"></div>-->
-    <!--</section>-->
-    <!-- End Team Section -->
-    <!-- Start Why Choose Us Section -->
 
-    <section class="cs_why_chose_us cs_style_1 cs_bg_filed overflow-hidden" data-src="assets/img/why_choose_us_bg_1.jpg"
-        style="
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: scroll;
-    background-color: #f0f0f0;
-  ">
-        <div class="cs_height_115 cs_height_lg_70"></div>
-
-        <div class="container wow fadeInRight" data-wow-duration="0.9s" data-wow-delay="0.25s">
-            <div class="cs_why_chose_us_in">
-                <div class="cs_section_heading cs_style_1">
-                    <h3 class="cs_section_subtitle cs_accent_color text-uppercase cs_medium cs_fs_20 cs_mb_10">
-                        <img src="assets/img/icons/fan.svg" alt="" class="cs_section_subheading_icon">
-                        Why Choose Us
-                    </h3>
-                    <h2 class="cs_section_title cs_fs_48 cs_semibold mb-0" style="text-align: center">Built for Comfort.
-                        Designed for Duty</h2>
-                </div>
-                <div class="cs_height_45 cs_height_lg_45"></div>
-                <div class="row cs_gap_y_30 cs_row_gap_60">
-                    <div class="col-sm-6">
-                        <div class="cs_iconbox cs_style_1">
-                            <div class="cs_iconbox_icon cs_mb_17">
-                                <img src="assets/img/icons/why_chose_us_1.svg" alt="Icon">
-                            </div>
-                            <h3 class="cs_iconbox_title cs_fs_24 cs_semibold cs_mb_6">Premium Fabric Quality</h3>
-                            <p class="cs_iconbox_subtitle mb-0">Soft, breathable, and durable fabric for everyday
-                                professional wear.</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="cs_iconbox cs_style_1">
-                            <div class="cs_iconbox_icon cs_mb_17">
-                                <img src="assets/img/icons/why_chose_us_2.svg" alt="Icon">
-                            </div>
-                            <h3 class="cs_iconbox_title cs_fs_24 cs_semibold cs_mb_6"> Custom Design & Branding</h3>
-                            <p class="cs_iconbox_subtitle mb-0">Add logos, colors, and styles to reflect your brand
-                                identity</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="cs_iconbox cs_style_1">
-                            <div class="cs_iconbox_icon cs_mb_17">
-                                <img src="assets/img/icons/why_chose_us_3.svg" alt="Icon">
-                            </div>
-                            <h3 class="cs_iconbox_title cs_fs_24 cs_semibold cs_mb_6">Perfect Fit & Comfort</h3>
-                            <p class="cs_iconbox_subtitle mb-0">Tailored fits that ensure comfort and confidence all day
-                                long.</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="cs_iconbox cs_style_1">
-                            <div class="cs_iconbox_icon cs_mb_17">
-                                <img src="assets/img/icons/why_chose_us_4.svg" alt="Icon">
-                            </div>
-                            <h3 class="cs_iconbox_title cs_fs_24 cs_semibold cs_mb_6">Bulk Orders with Timely Delivery
-                            </h3>
-                            <p class="cs_iconbox_subtitle mb-0">Efficient bulk production with guaranteed on-time delivery
-                                every order.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="cs_height_115 cs_height_lg_70"></div>
-    </section>
-    <!-- End Why Choose Us Section -->
-    <!-- Start Pricing Plan Section -->
-    <!--<section>-->
-    <!--  <div class="cs_height_115 cs_height_lg_70"></div>-->
-    <!--  <div class="container">-->
-    <!--    <div class="cs_tabs">-->
-
-    <!--      <div class="cs_slider_heading_1">-->
-    <!--        <div class="cs_section_heading cs_style_1">-->
-    <!--          <h3 class="cs_section_subtitle cs_accent_color text-uppercase cs_medium cs_fs_20 cs_mb_10">-->
-    <!--            <img src="assets/img/icons/fan.svg" alt="" class="cs_section_subheading_icon">-->
-    <!--            Our price plan-->
-    <!--          </h3>-->
-    <!--          <h2 class="cs_section_title cs_fs_48 cs_semibold mb-0">Where Comfort Meets <br>Efficiency</h2>-->
-    <!--        </div>-->
-    <!--        <ul class="cs_tab_links cs_style_2 cs_semibold cs_heading_font cs_mp_0 cs_heading_color">-->
-    <!--          <li class="active"><a href="#Monthly">Monthly</a></li>-->
-    <!--          <li><a href="#Yearly">Yearly</a></li>-->
-    <!--        </ul>-->
-    <!--      </div>-->
-    <!--      <div class="cs_height_45 cs_height_lg_45"></div>-->
-    <!--      <div class="cs_tab_body">-->
-    <!--        <div class="cs_tab active" id="Monthly">-->
-    <!--          <div class="row cs_gap_y_30 cs_row_gap_30">-->
-    <!--            <div class="col-lg-4">-->
-    <!--              <div class="cs_pricing_plan cs_style_1">-->
-    <!--                <img src="assets/img/shapes/price_shape.svg" alt="" class="cs_pricing_shape">-->
-    <!--                <div class="cs_pricing_plan_head">-->
-    <!--                  <div class="cs_price">-->
-    <!--                    <div class="cs_price_in">-->
-    <!--                      <h3 class="cs_fs_36 cs_white_color cs_semibold"><span>$</span>150</h3>-->
-    <!--                      <p class="cs_fs_18 cs_medium cs_white_color">Monthly</p>-->
-    <!--                    </div>-->
-    <!--                    <svg width="120" height="94" viewBox="0 0 120 94" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                      <path d="M10 0H110L120 15H0L10 0Z" fill="#010F34"/>-->
-    <!--                      <path d="M13 0H106V79L59.5 94L13 79V0Z" fill="#FF5500"/>-->
-    <!--                    </svg>       -->
-    <!--                  </div>-->
-    <!--                  <h2 class="cs_pricing_plan_heading mb-0 cs_fs_20 cs_medium">Basic Plan</h2>-->
-    <!--                </div>-->
-    <!--                <ul class="cs_pricing_features cs_mp_0 cs_heading_color">-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Refrigerant leak detection & repair </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Thermostat replacement </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li class="cs_close_featue"><img src="assets/img/icons/tick.svg" alt="">Air filter replacement</li>-->
-    <!--                  <li class="cs_close_featue"><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li class="cs_close_featue"><img src="assets/img/icons/tick.svg" alt="">AC fan replacement  </li>-->
-    <!--                </ul>-->
-    <!--                <a href="contact.html" class="cs_btn cs_style_1 cs_type_1">-->
-    <!--                  <span>Choose Plan</span>              -->
-    <!--                </a>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--            <div class="col-lg-4">-->
-    <!--              <div class="cs_pricing_plan cs_style_1">-->
-    <!--                <img src="assets/img/shapes/price_shape.svg" alt="" class="cs_pricing_shape">-->
-    <!--                <div class="cs_pricing_plan_head">-->
-    <!--                  <div class="cs_price">-->
-    <!--                    <div class="cs_price_in">-->
-    <!--                      <h3 class="cs_fs_36 cs_white_color cs_semibold"><span>$</span>200</h3>-->
-    <!--                      <p class="cs_fs_18 cs_medium cs_white_color">Monthly</p>-->
-    <!--                    </div>-->
-    <!--                    <svg width="120" height="94" viewBox="0 0 120 94" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                      <path d="M10 0H110L120 15H0L10 0Z" fill="#010F34"/>-->
-    <!--                      <path d="M13 0H106V79L59.5 94L13 79V0Z" fill="#FF5500"/>-->
-    <!--                    </svg>       -->
-    <!--                  </div>-->
-    <!--                  <h2 class="cs_pricing_plan_heading mb-0 cs_fs_20 cs_medium">Standard Plan</h2>-->
-    <!--                </div>-->
-    <!--                <ul class="cs_pricing_features cs_mp_0 cs_heading_color">-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Refrigerant leak detection & repair </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Thermostat replacement </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Air filter replacement</li>-->
-    <!--                  <li class="cs_close_featue"><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li class="cs_close_featue"><img src="assets/img/icons/tick.svg" alt="">AC fan replacement  </li>-->
-    <!--                </ul>-->
-    <!--                <a href="contact.html" class="cs_btn cs_style_1 cs_type_1">-->
-    <!--                  <span>Choose Plan</span>              -->
-    <!--                </a>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--            <div class="col-lg-4">-->
-    <!--              <div class="cs_pricing_plan cs_style_1">-->
-    <!--                <img src="assets/img/shapes/price_shape.svg" alt="" class="cs_pricing_shape">-->
-    <!--                <div class="cs_pricing_plan_head">-->
-    <!--                  <div class="cs_price">-->
-    <!--                    <div class="cs_price_in">-->
-    <!--                      <h3 class="cs_fs_36 cs_white_color cs_semibold"><span>$</span>250</h3>-->
-    <!--                      <p class="cs_fs_18 cs_medium cs_white_color">Monthly</p>-->
-    <!--                    </div>-->
-    <!--                    <svg width="120" height="94" viewBox="0 0 120 94" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                      <path d="M10 0H110L120 15H0L10 0Z" fill="#010F34"/>-->
-    <!--                      <path d="M13 0H106V79L59.5 94L13 79V0Z" fill="#FF5500"/>-->
-    <!--                    </svg>       -->
-    <!--                  </div>-->
-    <!--                  <h2 class="cs_pricing_plan_heading mb-0 cs_fs_20 cs_medium">Premium Plan</h2>-->
-    <!--                </div>-->
-    <!--                <ul class="cs_pricing_features cs_mp_0 cs_heading_color">-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Refrigerant leak detection & repair </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Thermostat replacement </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Air filter replacement</li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">AC fan replacement  </li>-->
-    <!--                </ul>-->
-    <!--                <a href="contact.html" class="cs_btn cs_style_1 cs_type_1">-->
-    <!--                  <span>Choose Plan</span>              -->
-    <!--                </a>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--        <div class="cs_tab" id="Yearly">-->
-    <!--          <div class="row cs_gap_y_30 cs_row_gap_30">-->
-    <!--            <div class="col-lg-4">-->
-    <!--              <div class="cs_pricing_plan cs_style_1">-->
-    <!--                <img src="assets/img/shapes/price_shape.svg" alt="" class="cs_pricing_shape">-->
-    <!--                <div class="cs_pricing_plan_head">-->
-    <!--                  <div class="cs_price">-->
-    <!--                    <div class="cs_price_in">-->
-    <!--                      <h3 class="cs_fs_36 cs_white_color cs_semibold"><span>$</span>350</h3>-->
-    <!--                      <p class="cs_fs_18 cs_medium cs_white_color">Yearly</p>-->
-    <!--                    </div>-->
-    <!--                    <svg width="120" height="94" viewBox="0 0 120 94" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                      <path d="M10 0H110L120 15H0L10 0Z" fill="#010F34"/>-->
-    <!--                      <path d="M13 0H106V79L59.5 94L13 79V0Z" fill="#FF5500"/>-->
-    <!--                    </svg>       -->
-    <!--                  </div>-->
-    <!--                  <h2 class="cs_pricing_plan_heading mb-0 cs_fs_20 cs_medium">Basic Plan</h2>-->
-    <!--                </div>-->
-    <!--                <ul class="cs_pricing_features cs_mp_0 cs_heading_color">-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Refrigerant leak detection & repair </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Thermostat replacement </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li class="cs_close_featue"><img src="assets/img/icons/tick.svg" alt="">Air filter replacement</li>-->
-    <!--                  <li class="cs_close_featue"><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li class="cs_close_featue"><img src="assets/img/icons/tick.svg" alt="">AC fan replacement  </li>-->
-    <!--                </ul>-->
-    <!--                <a href="contact.html" class="cs_btn cs_style_1 cs_type_1">-->
-    <!--                  <span>Choose Plan</span>              -->
-    <!--                </a>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--            <div class="col-lg-4">-->
-    <!--              <div class="cs_pricing_plan cs_style_1">-->
-    <!--                <img src="assets/img/shapes/price_shape.svg" alt="" class="cs_pricing_shape">-->
-    <!--                <div class="cs_pricing_plan_head">-->
-    <!--                  <div class="cs_price">-->
-    <!--                    <div class="cs_price_in">-->
-    <!--                      <h3 class="cs_fs_36 cs_white_color cs_semibold"><span>$</span>500</h3>-->
-    <!--                      <p class="cs_fs_18 cs_medium cs_white_color">Yearly</p>-->
-    <!--                    </div>-->
-    <!--                    <svg width="120" height="94" viewBox="0 0 120 94" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                      <path d="M10 0H110L120 15H0L10 0Z" fill="#010F34"/>-->
-    <!--                      <path d="M13 0H106V79L59.5 94L13 79V0Z" fill="#FF5500"/>-->
-    <!--                    </svg>       -->
-    <!--                  </div>-->
-    <!--                  <h2 class="cs_pricing_plan_heading mb-0 cs_fs_20 cs_medium">Standard Plan</h2>-->
-    <!--                </div>-->
-    <!--                <ul class="cs_pricing_features cs_mp_0 cs_heading_color">-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Refrigerant leak detection & repair </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Thermostat replacement </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Air filter replacement</li>-->
-    <!--                  <li class="cs_close_featue"><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li class="cs_close_featue"><img src="assets/img/icons/tick.svg" alt="">AC fan replacement  </li>-->
-    <!--                </ul>-->
-    <!--                <a href="contact.html" class="cs_btn cs_style_1 cs_type_1">-->
-    <!--                  <span>Choose Plan</span>              -->
-    <!--                </a>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--            <div class="col-lg-4">-->
-    <!--              <div class="cs_pricing_plan cs_style_1">-->
-    <!--                <img src="assets/img/shapes/price_shape.svg" alt="" class="cs_pricing_shape">-->
-    <!--                <div class="cs_pricing_plan_head">-->
-    <!--                  <div class="cs_price">-->
-    <!--                    <div class="cs_price_in">-->
-    <!--                      <h3 class="cs_fs_36 cs_white_color cs_semibold"><span>$</span>600</h3>-->
-    <!--                      <p class="cs_fs_18 cs_medium cs_white_color">Yearly</p>-->
-    <!--                    </div>-->
-    <!--                    <svg width="120" height="94" viewBox="0 0 120 94" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-    <!--                      <path d="M10 0H110L120 15H0L10 0Z" fill="#010F34"/>-->
-    <!--                      <path d="M13 0H106V79L59.5 94L13 79V0Z" fill="#FF5500"/>-->
-    <!--                    </svg>       -->
-    <!--                  </div>-->
-    <!--                  <h2 class="cs_pricing_plan_heading mb-0 cs_fs_20 cs_medium">Premium Plan</h2>-->
-    <!--                </div>-->
-    <!--                <ul class="cs_pricing_features cs_mp_0 cs_heading_color">-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Refrigerant leak detection & repair </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Thermostat replacement </li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Air filter replacement</li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">Clean condenser coil</li>-->
-    <!--                  <li><img src="assets/img/icons/tick.svg" alt="">AC fan replacement  </li>-->
-    <!--                </ul>-->
-    <!--                <a href="contact.html" class="cs_btn cs_style_1 cs_type_1">-->
-    <!--                  <span>Choose Plan</span>              -->
-    <!--                </a>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--  </div>-->
-    <!--  <div class="cs_height_120 cs_height_lg_80"></div>-->
-    <!--</section>-->
-    <!-- End Pricing Plan Section -->
     <!-- Start Testimonial Section -->
     <section class="cs_testimonial_1_section cs_bg_filed" data-src="assets/img/testimonial_bg.svg">
         <div class="cs_height_115 cs_height_lg_70"></div>
@@ -805,8 +260,8 @@
                     </div>
                     <div class="cs_height_45 cs_height_lg_45"></div>
                     <div class="cs_slider cs_style_1">
-                        <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="900"
-                            data-center="0" data-variable-width="0" data-slides-per-view="1">
+                        <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="900" data-center="0"
+                            data-variable-width="0" data-slides-per-view="1">
                             <div class="cs_slider_wrapper">
                                 @foreach ($testimonials as $item)
                                     <div class="cs_slide">
@@ -865,6 +320,71 @@
     </section>
     <!-- End Testimonial Section -->
 
+    <!-- Start Why Choose Us Section -->
+    <section class="cs_why_chose_us cs_style_1 cs_bg_filed overflow-hidden why-choose-banner-design"
+        data-src="assets/img/why_choose_us.png">
+        <div class="cs_height_115 cs_height_lg_70"></div>
+
+        <div class=" wow fadeInRight container" data-wow-duration="0.9s" data-wow-delay="0.25s">
+            <div class="">
+                <div class="cs_section_heading cs_style_1">
+                    <h3 class="cs_section_subtitle cs_accent_color text-uppercase cs_medium cs_fs_20 cs_mb_10"
+                        style="display:flex;flex-direction:row;justify-content:center">
+                        <img src="assets/img/icons/fan.svg" alt="" class="cs_section_subheading_icon">
+                        Why Choose Us
+                    </h3>
+                    <h2 class="cs_section_title cs_fs_48 cs_semibold mb-0" style="text-align: center">Built for Comfort.
+                        Designed for Duty</h2>
+                </div>
+                <div class="cs_height_45 cs_height_lg_45"></div>
+                <div class="row cs_gap_y_30 cs_row_gap_60">
+                    <div class="col-sm-6">
+                        <div class="cs_iconbox cs_style_1">
+                            <div class="cs_iconbox_icon cs_mb_17">
+                                <img src="assets/img/icons/why_chose_us_1.svg" alt="Icon">
+                            </div>
+                            <h3 class="cs_iconbox_title cs_fs_24 cs_semibold cs_mb_6">Premium Fabric Quality</h3>
+                            <p class="cs_iconbox_subtitle mb-0">Soft, breathable, and durable fabric for everyday
+                                professional wear.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="cs_iconbox cs_style_1">
+                            <div class="cs_iconbox_icon cs_mb_17">
+                                <img src="assets/img/icons/why_chose_us_2.svg" alt="Icon">
+                            </div>
+                            <h3 class="cs_iconbox_title cs_fs_24 cs_semibold cs_mb_6"> Custom Design & Branding</h3>
+                            <p class="cs_iconbox_subtitle mb-0">Add logos, colors, and styles to reflect your brand
+                                identity</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="cs_iconbox cs_style_1">
+                            <div class="cs_iconbox_icon cs_mb_17">
+                                <img src="assets/img/icons/why_chose_us_3.svg" alt="Icon">
+                            </div>
+                            <h3 class="cs_iconbox_title cs_fs_24 cs_semibold cs_mb_6">Perfect Fit & Comfort</h3>
+                            <p class="cs_iconbox_subtitle mb-0">Tailored fits that ensure comfort and confidence all day
+                                long.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="cs_iconbox cs_style_1">
+                            <div class="cs_iconbox_icon cs_mb_17">
+                                <img src="assets/img/icons/why_chose_us_4.svg" alt="Icon">
+                            </div>
+                            <h3 class="cs_iconbox_title cs_fs_24 cs_semibold cs_mb_6">Bulk Orders with Timely Delivery
+                            </h3>
+                            <p class="cs_iconbox_subtitle mb-0">Efficient bulk production with guaranteed on-time delivery
+                                every order.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cs_height_115 cs_height_lg_70"></div>
+    </section>
+    <!-- End Why Choose Us Section -->
 
 
     <!-- Start FAQ Section -->
@@ -925,8 +445,10 @@
         <div class="cs_height_120 cs_height_lg_80"></div>
     </section>
     <!-- End FAQ Section -->
+
+
     <!-- Start How To Work Section -->
-    <section class="cs_bg_filed" data-src="assets/img/how_to_work_bg.svg">
+    {{-- <section class="cs_bg_filed" data-src="assets/img/how_to_work_bg.svg">
         <div class="cs_height_115 cs_height_lg_70"></div>
         <div class="container">
             <div class="cs_section_heading_1_with_sub">
@@ -1030,151 +552,8 @@
             </div>
         </div>
         <div class="cs_height_120 cs_height_lg_70"></div>
-    </section>
+    </section> --}}
     <!-- End How To Work Section -->
 
-    <section>
-        <div class="cs_height_115 cs_height_lg_70"></div>
-        <div class="container">
-            <div class="cs_section_heading cs_style_1 text-center">
-                <h3 class="cs_section_subtitle cs_accent_color text-uppercase cs_medium cs_fs_20 cs_mb_10 wow fadeInUp"
-                    data-wow-duration="0.9s" data-wow-delay="0.25s">
-                    <img src="assets/img/icons/fan.svg" alt="" class="cs_section_subheading_icon">
-                    Blog Post
-                </h3>
-                <h2 class="cs_section_title cs_fs_48 cs_semibold mb-0">Our Latest News & Updates</h2>
-            </div>
-            <div class="cs_height_45 cs_height_lg_45"></div>
-            <div class="row cs_gap_y_30">
-                @foreach ($blogs as $blog)
-                    <div class="col-lg-4">
-                        <div class="cs_post cs_style_3">
-                            <div class="cs_post_thumb_out">
-                                <div class="cs_post_thumb_wrap">
-                                    <a href="{{ route('user.pages.blog-details', $blog->id) }}"
-                                        class="cs_post_thumb"><img src="{{ $blog->blog_image }}" alt=""></a>
-                                </div>
-                                <span class="cs_posted_by cs_fs_24 cs_semibold cs_heading_color cs_heading_font">
-                                    <i class="fa-regular fa-calendar-alt"></i> {{ $blog->blog_date }}
-                                </span>
-                            </div>
-                            <div class="cs_post_info">
-                                <div class="cs_post_meta cs_mb_14">
-                                    <div class="cs_post_admin">
-                                        <img src="assets/img/avatar_3.png" alt="" class="cs_post_admin_img">
-                                        <div class="cs_post_admin_right">
-                                            <span>Post</span><br>
-                                            <a href="#">Admin</a>
-                                        </div>
-                                    </div>
-                                    {{-- <span class="cs_post_comment"><i class="fa-regular fa-comments"></i>03
-                                        Comments</span> --}}
-                                </div>
-                                <h2 class="cs_fs_24 cs_semibold cs_mb_15">
-                                    <a href="{{ route('user.pages.blog-details', $blog->id) }}">{{ $blog->title }}</a>
-                                </h2>
-                                <p class="cs_mb_21">{{ strip_tags($blog->description) }}</p>
-                                <hr>
-
-                                <a href="{{ route('user.pages.blog-details', $blog->id) }}"
-                                    class="cs_text_btn cs_fs_16 text-uppercase cs_heading_color cs_bold">
-                                    READ MORE
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M8.28125 1.21875L13.7812 6.46875C13.9271 6.61458 14 6.79167 14 7C14 7.20833 13.9271 7.38542 13.7812 7.53125L8.28125 12.7812C7.90625 13.0729 7.55208 13.0729 7.21875 12.7812C6.92708 12.4062 6.92708 12.0521 7.21875 11.7188L11.375 7.75H0.75C0.291667 7.70833 0.0416667 7.45833 0 7C0.0416667 6.54167 0.291667 6.29167 0.75 6.25H11.375L7.21875 2.28125C6.92708 1.94792 6.92708 1.59375 7.21875 1.21875C7.55208 0.927083 7.90625 0.927083 8.28125 1.21875Z"
-                                            fill="currentColor"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-                {{-- <div class="col-lg-4">
-                    <div class="cs_post cs_style_3">
-                        <div class="cs_post_thumb_out">
-                            <div class="cs_post_thumb_wrap">
-                                <a href="blog-details.html" class="cs_post_thumb"><img src="assets/img/post_5.jpg"
-                                        alt=""></a>
-                            </div>
-                            <span class="cs_posted_by cs_fs_24 cs_semibold cs_heading_color cs_heading_font">
-                                <i class="fa-regular fa-calendar-alt"></i> 10 May, 2024
-                            </span>
-                        </div>
-                        <div class="cs_post_info">
-                            <div class="cs_post_meta cs_mb_14">
-                                <div class="cs_post_admin">
-                                    <img src="assets/img/avatar_2.png" alt="" class="cs_post_admin_img">
-                                    <div class="cs_post_admin_right">
-                                        <span>Post</span><br>
-                                        <a href="#">Admin</a>
-                                    </div>
-                                </div>
-                                <span class="cs_post_comment"><i class="fa-regular fa-comments"></i>14 Comments</span>
-                            </div>
-                            <h2 class="cs_fs_24 cs_semibold cs_mb_15">
-                                <a href="blog-details.html">Your Comfort, Our Mission Cool Choice for AC</a>
-                            </h2>
-                            <p class="cs_mb_21">Cleaning or replacing filters sealing leaks in ductwork and using a ace
-                            </p>
-                            <hr>
-                            <a href="blog-details.html"
-                                class="cs_text_btn cs_fs_16 text-uppercase cs_heading_color cs_bold">
-                                READ MORE
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M8.28125 1.21875L13.7812 6.46875C13.9271 6.61458 14 6.79167 14 7C14 7.20833 13.9271 7.38542 13.7812 7.53125L8.28125 12.7812C7.90625 13.0729 7.55208 13.0729 7.21875 12.7812C6.92708 12.4062 6.92708 12.0521 7.21875 11.7188L11.375 7.75H0.75C0.291667 7.70833 0.0416667 7.45833 0 7C0.0416667 6.54167 0.291667 6.29167 0.75 6.25H11.375L7.21875 2.28125C6.92708 1.94792 6.92708 1.59375 7.21875 1.21875C7.55208 0.927083 7.90625 0.927083 8.28125 1.21875Z"
-                                        fill="currentColor"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="cs_post cs_style_3">
-                        <div class="cs_post_thumb_out">
-                            <div class="cs_post_thumb_wrap">
-                                <a href="blog-details.html" class="cs_post_thumb"><img src="assets/img/post_6.jpg"
-                                        alt=""></a>
-                            </div>
-                            <span class="cs_posted_by cs_fs_24 cs_semibold cs_heading_color cs_heading_font">
-                                <i class="fa-regular fa-calendar-alt"></i> 05 May, 2024
-                            </span>
-                        </div>
-                        <div class="cs_post_info">
-                            <div class="cs_post_meta cs_mb_14">
-                                <div class="cs_post_admin">
-                                    <img src="assets/img/avatar_1.png" alt="" class="cs_post_admin_img">
-                                    <div class="cs_post_admin_right">
-                                        <span>Post</span><br>
-                                        <a href="#">Admin</a>
-                                    </div>
-                                </div>
-                                <span class="cs_post_comment"><i class="fa-regular fa-comments"></i>25 Comments</span>
-                            </div>
-                            <h2 class="cs_fs_24 cs_semibold cs_mb_15">
-                                <a href="blog-details.html">Your Trusted Air Cool, Stay Comfortable</a>
-                            </h2>
-                            <p class="cs_mb_21">We recommend annual inspections especi before the winter and after severe
-                                storms</p>
-                            <hr>
-                            <a href="blog-details.html"
-                                class="cs_text_btn cs_fs_16 text-uppercase cs_heading_color cs_bold">
-                                READ MORE
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M8.28125 1.21875L13.7812 6.46875C13.9271 6.61458 14 6.79167 14 7C14 7.20833 13.9271 7.38542 13.7812 7.53125L8.28125 12.7812C7.90625 13.0729 7.55208 13.0729 7.21875 12.7812C6.92708 12.4062 6.92708 12.0521 7.21875 11.7188L11.375 7.75H0.75C0.291667 7.70833 0.0416667 7.45833 0 7C0.0416667 6.54167 0.291667 6.29167 0.75 6.25H11.375L7.21875 2.28125C6.92708 1.94792 6.92708 1.59375 7.21875 1.21875C7.55208 0.927083 7.90625 0.927083 8.28125 1.21875Z"
-                                        fill="currentColor"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div> --}}
-            </div>
-        </div>
-        <div class="cs_height_120 cs_height_lg_80"></div>
-    </section>
     <!-- End Blog Section -->
 @endsection

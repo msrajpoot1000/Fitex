@@ -1,0 +1,8 @@
+php artisan make:cat-crud ComRegLicenseSec --fields="license_image:image:nullable" --fields="license_name:string:required" --fields="license_description:text:nullable"  --fields="is_active:boolean:required:default=1"   
+php artisan make:custom-blade ComRegLicenseSec --fields="input:file:license_image:nullable" --fields="input:text:license_name:required" --fields="textarea:license_description:nullable" --fields="select:is_active:default=1"  
+php artisan make:custom-blade-edit ComRegLicenseSec --fields="input:file:license_image:nullable" --fields="input:text:license_name:required" --fields="textarea:license_description:nullable" --fields="select:is_active:default=1"  
+php artisan migrate
+
+
+
+

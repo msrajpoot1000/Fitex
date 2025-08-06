@@ -1,6 +1,6 @@
 @extends('user.layouts.app')
 
-@section('title', 'Allied Print Pack | About Us')
+@section('title', 'Fitex Uniforms | Blog')
 
 @section('write')
 

@@ -12,8 +12,6 @@ use App\Http\Controllers\MailVerificationController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ContentPagesController;
 use App\Http\Controllers\FaqController;
-use App\Http\Controllers\IndustryController;
-use App\Http\Controllers\SubIndustryController;
 
 
 Route::get('/', [IndexController::class, 'index'])->name('user.pages.index');
@@ -95,13 +93,6 @@ Route::resource('admin-faq', FaqController::class)->middleware(['auth', 'verifie
 
 
 
-// Admin Industries
-Route::resource('admin-industries', IndustryController::class)->middleware(['auth', 'verified']);
-
-
-// Admin Sub Industries
-Route::resource('admin-sub-industries', SubIndustryController::class)->middleware(['auth', 'verified']);
-
 
 
 
@@ -124,3 +115,17 @@ Route::resource('admin-program', ProgramController::class)->middleware(['auth', 
 use App\Http\Controllers\HomeSliderController;
 Route::get('/home-slider', [HomeSliderController::class, 'indexF'])->name('user.pages.home_slider');
 Route::resource('admin-home-slider', HomeSliderController::class)->middleware(['auth', 'verified']);
+
+
+
+
+
+// IndustryController
+use App\Http\Controllers\IndustryController;
+Route::get('/industry', [IndustryController::class, 'indexF'])->name('user.pages.industry');
+Route::resource('admin-industry', IndustryController::class)->middleware(['auth', 'verified']);
+
+// IndustryPageController
+use App\Http\Controllers\IndustryPageController;
+Route::get('/industry-page/{id}', [IndexController::class, 'industryPage'])->name('user.pages.industry-page');
+Route::resource('/admin-industry-page', IndustryPageController::class)->middleware(['auth', 'verified']);

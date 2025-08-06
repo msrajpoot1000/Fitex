@@ -31,6 +31,16 @@
                             <input type="file" class="form-control" name="favicon" accept=".png,.svg,.ico">
                         </div>
 
+                        <div class="mb-3">
+                            <label for="logo" class="form-label">Company Description</label>
+                            <textarea name="company_description" id="description"
+                                class="form-control @error('company_description') is-invalid @enderror" placeholder="Company Description...">{{ old('company_description', $companyinfos->company_description) }}</textarea>
+                            @error('company_description')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
 
                         <div class="row">
 

@@ -1,6 +1,8 @@
   @php
       use Illuminate\Support\Facades\DB;
       $company = DB::table('companyinfos')->first(); // ✅ returns only the first row (an object)
+      use App\Models\Industry;
+      $industries = Industry::latest()->get();
   @endphp
 
 
@@ -55,13 +57,11 @@
                               <li class="menu-item-has-children">
                                   <a href="#">Industries</a>
                                   <ul>
-                                      <li><a href="team.html">Construction</a></li>
-                                      <li><a href="team-details.html">Security</a></li>
-                                      <li><a href="projects.html">Healthcare</a></li>
-                                      <li><a href="project-details.html">Hospitality </a></li>
-                                      <li><a href="project-details.html">Retail </a></li>
-                                      <li><a href="project-details.html">Corporate/Office </a></li>
-                                      <li><a href="project-details.html">School </a></li>
+                                      @foreach ($industries as $item)
+                                          <li><a
+                                                  href="{{ route('user.pages.industry-page', $item->id) }}">{{ $item->name }}</a>
+                                          </li>
+                                      @endforeach
                                   </ul>
                               </li>
                               <li class="menu-item-has-children">

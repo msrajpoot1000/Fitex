@@ -32,6 +32,7 @@ php artisan make:custom-blade-edit ComRegLicenseSec --fields="input:file:license
 php artisan migrate
 
 
+
 // business legal section
 php artisan make:subsubcat-crud ComRegBusinessLegalSec  --fields="name:string:required" --fields="description:text:nullable"  --fields="is_active:boolean:required:default=1"   --fields="ref_id:belongsTo:ComReg:required"  --fields="ref_id:belongsTo:ComRegPage:required"
 php artisan make:sub-sub-cat-blade ComRegBusinessLegalSec  --fields="input:text:name:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1" --fields="ref_id:belongsTo:ComReg:required" --fields="ref_id:belongsTo:ComRegPage:required"
@@ -325,9 +326,14 @@ php artisan migrate
 
 
 
-// home slider
-php artisan make:cat-crud HomeSlider --fields="banner_image:image:nullable"  --fields="title:string:required" --fields="description:text:nullable" --fields="is_active:boolean:required:default=1"
-php artisan make:custom-blade HomeSlider --fields="input:file:banner_image:nullable" --fields="input:text:title:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
-php artisan make:custom-blade-edit HomeSlider --fields="input:file:banner_image:nullable" --fields="input:text:title:required" --fields="textarea:description:nullable" --fields="select:is_active:default=1"
+
+php artisan make:cat-crud Industry  --fields="name:string:required" --fields="logo:image:nullable" --fields="is_active:boolean:required:default=1" --fields="IndustryPage:hasMany:IndustryPage"
+php artisan make:custom-blade Industry --fields="input:text:name:required" --fields="input:file:logo:nullable" --fields="select:is_active:default=1"
+php artisan make:custom-blade-edit Industry --fields="input:text:name:required" --fields="input:file:logo:nullable" --fields="select:is_active:default=1"
 php artisan migrate
 
+
+php artisan make:subcat-crud IndustryPage --fields="name:string:required"  --fields="image:image:nullable"  --fields="description:text:nullable"   --fields="is_active:boolean:required:default=1"  --fields="ref_id:belongsTo:Industry:required"
+php artisan make:sub-cat-blade IndustryPage --fields="input:text:name:required" --fields="input:file:image:nullable" --fields="textarea:description:nullable"   --fields="select:is_active:default=1" --fields="ref_id:belongsTo:Industry:required"
+php artisan make:sub-cat-edit-blade IndustryPage --fields="input:text:name:required" --fields="input:file:image:nullable" --fields="textarea:description:nullable"    --fields="select:is_active:default=1"
+php artisan migrate

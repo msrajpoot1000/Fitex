@@ -1,6 +1,6 @@
 @extends('user.layouts.app')
 
-@section('title', 'Allied Print Pack | Contact Us')
+@section('title', 'Allied Print Pack | Blog')
 
 @section('write')
    <div class="cs_site_header_spacing_130"></div>

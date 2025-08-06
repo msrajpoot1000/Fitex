@@ -19,9 +19,11 @@ class CompanyinfoController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         // ✅ Step 1: Validate inputs
         $request->validate([
             'companyname' => 'required|string|max:255',
+             'company_description' => 'nullable|string',
             'email'       => 'required|email',
             'phone'       => 'required|string|max:15',
             'phone2'      => 'nullable|string|max:15',
@@ -70,6 +72,7 @@ class CompanyinfoController extends Controller
     
         // ✅ Step 5: Update other fields
         $company->companyname = $request->companyname;
+         $company->company_description = $request->company_description; 
         $company->email       = $request->email;
         $company->phone       = $request->phone;
         $company->phone2      = $request->phone2;

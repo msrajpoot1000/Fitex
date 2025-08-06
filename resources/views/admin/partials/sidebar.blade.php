@@ -107,8 +107,8 @@
                             <span class="menu-item" data-key="t-email">Industries</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('admin-industries.index') }}" data-key="t-inbox">Industry</a></li>
-                            <li><a href="{{ route('admin-sub-industries.index') }}" data-key="t-inbox">Sub
+                            <li><a href="{{ route('admin-industry.index') }}" data-key="t-inbox">Industry</a></li>
+                            <li><a href="{{ route('admin-industry-page.index') }}" data-key="t-inbox">Sub
                                     Industries</a></li>
 
                         </ul>

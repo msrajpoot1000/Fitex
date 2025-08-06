@@ -2,87 +2,122 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Industry;
+use Illuminate\Http\Request;
 
 class IndustryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function indexF()
+    {
+        return view('user.pages.industries');
+    }
+
     public function index()
     {
-        $industries = Industry::all();
-        return view('admin.pages.industries', compact('industries'));
+        $items = Industry::latest()->get();
+  return view('admin.pages.industry', compact('items'));
+
+
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+    public function create() {}
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
+        $data = $request->validate([
+            'name' => 'required|string',
+        'logo' => 'image|mimes:jpg,jpeg,png|max:2048|nullable',
+        'is_active' => 'required|boolean'
         ]);
+        
+        if ($request->hasFile('logo')) {
+            $folder = 'upload/industries';
+            $path = public_path($folder);
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $file = $request->file('logo');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move($path, $filename);
+            $data['logo'] = $folder . '/' . $filename;
+        }
 
-        Industry::create($request->only('name'));
-
-        return redirect()->route('admin-industries.index')->with('success', 'Industry created successfully.');
+        Industry::create($data);
+        return redirect()->route('admin-industry.index')->with('success', 'Industry created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
+        $item = Industry::findOrFail($id);
+   return view("admin.pages.industry-edit", compact('item'));
 
-        $industry = Industry::findOrFail($id);
-        return view('admin.pages.industries-edit', compact('industry'));
+
+
     }
-        
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
+        $item = Industry::findOrFail($id);
 
-        // dd($request);
-        $industry = Industry::findOrFail($id);
         $request->validate([
-            'name' => 'required|string|max:255',
-            'status' => 'required|boolean', // ✅ Add validation for status if it's a checkbox or dropdown
+            'name' => 'required|string',
+        'status_logo' => 'nullable|in:0,1',
+        'is_active' => 'required|boolean'
         ]);
-    
-        $industry->update($request->only('name', 'status'));
-    
-        return redirect()->route('admin-industries.index')->with('success', 'Industry updated successfully.');
-    }
-    
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $industry = Industry::findOrFail($id);
-        $industry->delete();
-        return redirect()->route('admin-industries.index')->with('success', 'Industry deleted successfully.');
+        $data = $request->only(['name', 'is_active']);
+
+                $photoFields = ['logo'];
+
+        foreach ($photoFields as $field) {
+            $statusField = 'status_' . $field;
+
+            if ($request->input($statusField)) {
+                if ($request->hasFile($field)) {
+                    if (!empty($item->$field) && file_exists(public_path($item->$field))) {
+                        unlink(public_path($item->$field));
+                    }
+
+                    $folder = 'upload/industries';
+                    $path = public_path($folder);
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+
+                    $file = $request->file($field);
+                    $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move($path, $filename);
+
+                    $data[$field] = $folder . '/' . $filename;
+                } else {
+                    $data[$field] = $item->$field;
+                }
+            } else {
+                if (!empty($item->$field) && file_exists(public_path($item->$field))) {
+                    unlink(public_path($item->$field));
+                }
+
+                $data[$field] = null;
+            }
+        }
+
+        $item->update($data);
+
+        return redirect()->route('admin-industry.index')->with('success', 'Industry updated successfully.');
     }
+
+   public function destroy(string $id)
+{
+    $item = Industry::findOrFail($id);
+
+        if (!empty($item->logo) && file_exists(public_path($item->logo))) {
+            unlink(public_path($item->logo));
+        }
+
+    $item->delete();
+
+    return redirect()->route('admin-industry.index')->with('success', 'Industry deleted successfully.');
+}
+
 }
